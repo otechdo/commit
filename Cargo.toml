@@ -1,0 +1,16 @@
+[package]
+name = "commiter"
+version = "4.1.0"
+edition = "2021"
+description = "A rust program to ensure the quality of commit"
+keywords = ["commit","git","quality","cargo","zuu"]
+repository = "https://github.com/otechdo/commiter"
+categories = ["development-tools"]
+readme = "README.md"
+license-file = "LICENSE"
+homepage = "https://github.com/otechdo/commiter/wiki"
+authors = [ "Willy Micieli"]
+[dependencies]
+cargo_metadata = "0.18.1"
+chrono = "0.4.38"
+inquire = "0.7.5"
