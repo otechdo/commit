@@ -1,10 +1,16 @@
 REFACTOR: {{ commit_message }}
 
-Refactor Details:
+Details:
 
-  * Reason for refactor: {{ reason_for_refactor }}.
-  * Code structure improved in: {{ affected_module }}.
+    * Refactor applied to: {{ affected_module }}.
+    * Reason for refactor: {{ reason_for_refactor }}.
+    * Code structure improved in: {{ improved_structure }}.
+
+Impact:
+
+    * Code readability enhanced.
+    * Performance impact: {{ performance_impact }}.
 
 Author: {{ author }}
-
+Date:   {{ commit_date }}
 Parent Commit: {{ parent_commit }}

@@ -1,15 +1,15 @@
-DOCUMENTATION UPDATE: {{ commit_message }}
+API DOCUMENTATION: {{ commit_message }}
 
 Details:
 
-    * Sections updated: {{ updated_sections }}.
+    * Documentation updated for: {{ api_endpoint }}.
+    * Changes applied: {{ changes_applied }}.
     * New sections added: {{ new_sections }}.
-    * Technical changes documented: {{ changes_documented }}.
 
 Impact:
 
     * Documentation completeness improved.
-    * User/Developer guidance enhanced.
+    * API consumer understanding enhanced.
 
 Author: {{ author }}
 Date:   {{ commit_date }}

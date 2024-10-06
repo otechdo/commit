@@ -1,18 +1,16 @@
-SECURITY: {{ commit_message }}
+SECURITY UPDATE: {{ commit_message }}
 
-Security Details:
-- Vulnerability fixed: {{ vulnerability_id }}.
-- Vulnerability description: {{ vulnerability_description }}.
-- Solution: {{ solution_description }}.
+Details:
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Security update applied to: {{ system_or_service }}.
+    * Risk mitigated: {{ risk_mitigated }}.
+    * Security protocols enhanced: {{ security_protocols }}.
 
 Impact:
-- Risk level: {{ risk_level }}.
-- Post-fix security assessment: {{ security_assessment }}.
+
+    * System protection improved.
+    * Threat vectors reduced.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

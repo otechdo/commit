@@ -1,14 +1,16 @@
-OPTIMIZE: {{ commit_message }}
+OPTIMIZATION: {{ commit_message }}
 
-Optimization Details:
-- Code optimized in: {{ affected_module }}.
-- Reason for optimization: {{ reason }}.
-- Performance improvements: {{ improvements }}.
+Details:
 
-Files optimized:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Module optimized: {{ optimized_module }}.
+    * Performance bottleneck resolved: {{ bottleneck }}.
+    * Resource usage reduced: {{ resource_usage_reduction }}.
+
+Impact:
+
+    * System performance improved.
+    * Response time improvement: {{ response_time_improvement }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

@@ -1,14 +1,16 @@
 HOTPATCH: {{ commit_message }}
 
 Details:
-- Hotpatch applied to: {{ affected_module }}.
-- Urgency: {{ urgency }}.
-- Fix applied: {{ fix_description }}.
 
-Files patched:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Hotpatch applied to: {{ system_or_service }}.
+    * Issue resolved: {{ issue_resolved }}.
+    * Affected module: {{ affected_module }}.
+
+Impact:
+
+    * No downtime required.
+    * System performance restored: {{ system_performance_restored }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

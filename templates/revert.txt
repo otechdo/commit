@@ -1,16 +1,16 @@
 REVERT: {{ commit_message }}
 
-Reverted Commit:
-- Commit hash: {{ commit_hash }}.
-- Reason for revert: {{ reason_for_revert }}.
+Details:
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Reverted commit: {{ reverted_commit }}.
+    * Reason for revert: {{ reason_for_revert }}.
+    * Changes undone: {{ changes_undone }}.
 
 Impact:
-- Description of impact: {{ impact_description }}.
+
+    * Codebase restored to a previous stable state.
+    * Issues with the reverted commit resolved.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

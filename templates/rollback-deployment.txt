@@ -1,0 +1,16 @@
+ROLLBACK DEPLOYMENT: {{ commit_message }}
+
+Details:
+
+    * Rolled back version: {{ rolled_back_version }}.
+    * Reason for rollback: {{ reason_for_rollback }}.
+    * Downtime duration: {{ downtime_duration }}.
+
+Impact:
+
+    * Previous stable version restored.
+    * System availability ensured.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

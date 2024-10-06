@@ -77,7 +77,7 @@ pub async fn run_cli() {
         Some(("init", sub_matches)) => init(sub_matches).await,
         Some(("archive", sub_matches)) => create_archive(sub_matches).await,
         Some(("template", sub_matches)) => manage_templates(sub_matches).await,
-        _ => println!("Unknown command. Use 'commit', 'init', or 'archive'."),
+        _ => println!("Unknown command. Use 'commit', 'init', 'archive', or template."),
     }
 }
 #[doc = "the command arguments"]
@@ -349,7 +349,7 @@ fn commit_vcs(vcs: &str, message: &str) {
 
 #[doc = "download and extract archive"]
 async fn init(_: &ArgMatches) {
-    let url = "https://example.com/templates.tar.gz"; // Remplace par l'URL réelle
+    let url = "https://raw.githubusercontent.com/otechdo/commit/refs/heads/main/templates.tar.gz"; // Remplace par l'URL réelle
     let output_archive = "templates.tar.gz";
     let output_dir = "templates";
     download_file(url, output_archive).expect("Failed to download archive");

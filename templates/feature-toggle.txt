@@ -1,0 +1,16 @@
+FEATURE TOGGLE: {{ commit_message }}
+
+Details:
+
+    * Feature toggled: {{ feature_toggled }}.
+    * Reason for toggling: {{ reason_for_toggling }}.
+    * Status: {{ toggle_status }} (Enabled/Disabled).
+
+Impact:
+
+    * Modules affected: {{ affected_modules }}.
+    * User impact: {{ user_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

@@ -1,0 +1,16 @@
+MINOR UPDATE: {{ commit_message }}
+
+Details:
+
+    * Minor update applied to: {{ system_or_service }}.
+    * Affected modules: {{ affected_modules }}.
+    * Changes: {{ changes }}.
+
+Impact:
+
+    * Small improvements or bugfixes.
+    * No significant impact on functionality.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

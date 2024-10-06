@@ -1,16 +1,16 @@
 MERGE: {{ commit_message }}
 
-Merge Details:
-- Merged branch: {{ source_branch }} into {{ target_branch }}.
-- Conflicts resolved: {{ conflicts_resolved }}.
+Details:
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Merged branch: {{ merged_branch }} into {{ target_branch }}.
+    * Conflicts resolved: {{ conflicts_resolved }}.
+    * Reason for merge: {{ reason_for_merge }}.
 
 Impact:
-- Description of changes due to merge: {{ merge_impact }}.
+
+    * Features/bugfixes merged from: {{ source_branch }}.
+    * Codebase integration improved.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

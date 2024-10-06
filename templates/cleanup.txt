@@ -1,13 +1,15 @@
 CLEANUP: {{ commit_message }}
 
 Details:
-- Removed unused code in: {{ affected_module }}.
-- No impact on functionality.
 
-Files cleaned:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Cleanup performed on: {{ system_or_service }}.
+    * Files/Resources removed: {{ resources_removed }}.
+
+Impact:
+
+    * Codebase or system efficiency improved.
+    * Unnecessary resources removed.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

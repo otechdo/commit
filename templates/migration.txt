@@ -1,19 +1,16 @@
 MIGRATION: {{ commit_message }}
 
-Migration Details:
-- Migration type: {{ migration_type }}.
-- Database affected: {{ database_name }}.
-- Purpose: {{ purpose_of_migration }}.
+Details:
 
-Changes made:
-{% for change in changes %}
-  - {{ change }}
-{% endfor %}
+    * Migration type: {{ migration_type }}.
+    * Data migrated: {{ data_migrated }}.
+    * Downtime required: {{ downtime_required }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+Impact:
+
+    * System functionality: {{ system_functionality_impact }}.
+    * Data integrity maintained: {{ data_integrity }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

@@ -1,13 +1,16 @@
-FEAT: {{ commit_message }}
+FEATURE ADDITION: {{ commit_message }}
 
 Details:
-- This commit introduces a new feature: {{ feature_name }}.
-- Purpose: {{ purpose }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * New feature: {{ feature_name }}.
+    * Reason for addition: {{ reason_for_addition }}.
+    * Affected modules: {{ affected_modules }}.
+
+Impact:
+
+    * User experience enhanced.
+    * New capabilities available: {{ new_capabilities }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

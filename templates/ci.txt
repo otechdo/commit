@@ -1,14 +1,16 @@
-CI: {{ commit_message }}
+CI UPDATE: {{ commit_message }}
 
 Details:
-- CI pipeline changed in: {{ pipeline_section }}.
-- Reason for change: {{ reason }}.
-- Tools/Configurations updated: {{ tools_or_configurations }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * CI pipeline changes: {{ ci_changes }}.
+    * CI tool/version updated: {{ ci_tool_version }}.
+    * CI task added/modified: {{ ci_task }}.
+
+Impact:
+
+    * Build automation improved.
+    * Test coverage impact: {{ test_coverage_impact }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

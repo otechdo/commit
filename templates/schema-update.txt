@@ -1,0 +1,16 @@
+SCHEMA UPDATE: {{ commit_message }}
+
+Details:
+
+    * Database schema updated for: {{ affected_database }}.
+    * New schema version: {{ schema_version }}.
+    * Tables/Columns affected: {{ affected_tables }}.
+
+Impact:
+
+    * Database integrity maintained.
+    * System performance: {{ performance_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

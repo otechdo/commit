@@ -1,0 +1,17 @@
+DEPRECATION NOTICE: {{ commit_message }}
+
+Details:
+
+    * Feature to be deprecated: {{ feature_to_deprecate }}.
+    * Deprecation timeline: {{ deprecation_timeline }}.
+    * Replacement feature: {{ replacement_feature }}.
+
+Impact:
+
+    * User migration required.
+    * End of life date: {{ eol_date }}.
+    * Documentation updated: {{ documentation_update }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

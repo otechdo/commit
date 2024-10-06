@@ -1,15 +1,16 @@
 UPDATE: {{ commit_message }}
 
-Update Details:
-- Updated dependencies: {{ dependencies }}.
-- Previous version: {{ previous_version }}.
-- New version: {{ new_version }}.
-- Reason for update: {{ reason_for_update }}.
+Details:
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * System update applied to: {{ system_or_service }}.
+    * Changes introduced: {{ changes_introduced }}.
+    * Modules affected: {{ affected_modules }}.
+
+Impact:
+
+    * System functionality improved.
+    * Performance impact: {{ performance_impact }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

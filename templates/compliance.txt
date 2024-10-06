@@ -1,17 +1,17 @@
 COMPLIANCE: {{ commit_message }}
 
 Details:
-- Compliance requirement addressed: {{ compliance_standard }} (GDPR, HIPAA, etc.).
-- Changes made to ensure compliance: {{ changes_description }}.
-- Compliance checked for: {{ component_or_service }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Compliance rule applied: {{ compliance_rule }}.
+    * System/Module affected: {{ system_or_module }}.
+    * Compliance standard: {{ compliance_standard }}.
+    * Audit trail updated: {{ audit_trail_updated }}.
 
 Impact:
-- The system is now compliant with the necessary regulations.
+
+    * Compliance with {{ compliance_standard }} ensured.
+    * Legal and regulatory risks reduced.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

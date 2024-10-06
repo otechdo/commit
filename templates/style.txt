@@ -1,13 +1,16 @@
 STYLE: {{ commit_message }}
 
 Details:
-- Updated code style in: {{ affected_module }}.
-- Style guidelines followed: {{ style_guidelines }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Code style updated for: {{ affected_modules }}.
+    * Linting rules applied: {{ linting_rules }}.
+    * Formatting changes: {{ formatting_changes }}.
+
+Impact:
+
+    * Code readability improved.
+    * Code consistency maintained.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

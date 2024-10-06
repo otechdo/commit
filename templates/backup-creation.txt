@@ -1,0 +1,16 @@
+BACKUP CREATION: {{ commit_message }}
+
+Details:
+
+    * Backup created for: {{ system_or_service }}.
+    * Data size: {{ data_size }}.
+    * Storage location: {{ storage_location }}.
+
+Impact:
+
+    * Backup ensures data integrity and recovery options.
+    * Backup time: {{ backup_time }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

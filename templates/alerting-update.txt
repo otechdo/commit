@@ -1,0 +1,17 @@
+ALERTING UPDATE: {{ commit_message }}
+
+Details:
+
+    * Alerts added/modified for: {{ system_or_service }}.
+    * New thresholds: {{ new_thresholds }}.
+    * Notifications sent to: {{ notification_channels }}.
+    * Reason for update: {{ reason_for_update }}.
+
+Impact:
+
+    * Incident detection improved.
+    * Response time improved: {{ response_time_improvement }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

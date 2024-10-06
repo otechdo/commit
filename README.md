@@ -1,222 +1,1758 @@
-# Commiter
+<!-- TOC -->
+* [Installation](#installation)
+  * [Help](#help)
+  * [Templates](#templates)
+    * [List](#list)
+    * [Add](#add)
+    * [Remove](#remove)
+    * [Available by default](#available-by-default)
+    * [Get templates](#get-templates)
+  * [Usage](#usage)
+    * [For alerting-update](#for-alerting-update)
+      * [Run](#run)
+      * [Output](#output)
+    * [For api-change](#for-api-change)
+      * [Run](#run-1)
+      * [Output](#output-1)
+    * [For api-documentation](#for-api-documentation)
+      * [Run](#run-2)
+      * [Output](#output-2)
+    * [For api](#for-api)
+      * [Run](#run-3)
+      * [Output](#output-3)
+    * [For audit](#for-audit)
+      * [Run](#run-4)
+      * [Output](#output-4)
+    * [For backup-creation](#for-backup-creation)
+      * [Run](#run-5)
+      * [Output](#output-5)
+    * [For build](#for-build)
+      * [Run](#run-6)
+      * [Output](#output-6)
+    * [For cache-update](#for-cache-update)
+      * [Run](#run-7)
+      * [Output](#output-7)
+    * [For cherry-pick](#for-cherry-pick)
+      * [Run](#run-8)
+      * [Output](#output-8)
+    * [For chore](#for-chore)
+      * [Run](#run-9)
+      * [Output](#output-9)
+    * [For ci](#for-ci)
+      * [Run](#run-10)
+      * [Output](#output-10)
+    * [For cleanup](#for-cleanup)
+      * [Run](#run-11)
+      * [Output](#output-11)
+    * [For compliance](#for-compliance)
+      * [Run](#run-12)
+      * [Output](#output-12)
+    * [For config](#for-config)
+      * [Run](#run-13)
+      * [Output](#output-13)
+    * [For database-migration](#for-database-migration)
+      * [Run](#run-14)
+      * [Output](#output-14)
+    * [For dependency-removal](#for-dependency-removal)
+      * [Run](#run-15)
+      * [Output](#output-15)
+    * [For dependency-update](#for-dependency-update)
+      * [Run](#run-16)
+      * [Output](#output-16)
+    * [For deployment](#for-deployment)
+      * [Run](#run-17)
+      * [Output](#output-17)
+    * [For deprecate](#for-deprecate)
+      * [Run](#run-18)
+      * [Output](#output-18)
+    * [For deprecation-notice](#for-deprecation-notice)
+      * [Run](#run-19)
+      * [Output](#output-19)
+    * [For docs](#for-docs)
+      * [Run](#run-20)
+      * [Output](#output-20)
+    * [For experiment](#for-experiment)
+      * [Run](#run-21)
+      * [Output](#output-21)
+    * [For feat](#for-feat)
+      * [Run](#run-22)
+      * [Output](#output-22)
+    * [For feature-addition](#for-feature-addition)
+      * [Run](#run-23)
+      * [Output](#output-23)
+    * [For feature-toggle](#for-feature-toggle)
+      * [Run](#run-24)
+      * [Output](#output-24)
+    * [For fix](#for-fix)
+      * [Run](#run-25)
+      * [Output](#output-25)
+    * [For hotfix](#for-hotfix)
+      * [Run](#run-26)
+      * [Output](#output-26)
+    * [For hotpatch](#for-hotpatch)
+      * [Run](#run-27)
+      * [Output](#output-27)
+    * [For log-rotation-update](#for-log-rotation-update)
+      * [Run](#run-28)
+      * [Output](#output-28)
+    * [For log-update](#for-log-update)
+      * [Run](#run-29)
+      * [Output](#output-29)
+    * [For merge](#for-merge)
+      * [Run](#run-30)
+      * [Output](#output-30)
+    * [For migration](#for-migration)
+      * [Run](#run-31)
+      * [Output](#output-31)
+    * [For minor-update](#for-minor-update)
+      * [Run](#run-32)
+      * [Output](#output-32)
+    * [For monitoring-update](#for-monitoring-update)
+      * [Run](#run-33)
+      * [Output](#output-33)
+    * [For optimize](#for-optimize)
+      * [Run](#run-34)
+      * [Output](#output-34)
+    * [For perf](#for-perf)
+      * [Run](#run-35)
+      * [Output](#output-35)
+    * [For refactor](#for-refactor)
+      * [Run](#run-36)
+      * [Output](#output-36)
+    * [For remove](#for-remove)
+      * [Run](#run-37)
+      * [Output](#output-37)
+    * [For revert](#for-revert)
+      * [Run](#run-38)
+      * [Output](#output-38)
+    * [For rollback-deployment](#for-rollback-deployment)
+      * [Run](#run-39)
+      * [Output](#output-39)
+    * [For rollback](#for-rollback)
+      * [Run](#run-40)
+      * [Output](#output-40)
+    * [For schema-update](#for-schema-update)
+      * [Run](#run-41)
+      * [Output](#output-41)
+    * [For secret-update](#for-secret-update)
+      * [Run](#run-42)
+      * [Output](#output-42)
+    * [For security-patch](#for-security-patch)
+      * [Run](#run-43)
+      * [Output](#output-43)
+    * [For security](#for-security)
+      * [Run](#run-44)
+      * [Output](#output-44)
+    * [For services](#for-services)
+      * [Run](#run-45)
+      * [Output](#output-45)
+    * [For style](#for-style)
+      * [Run](#run-46)
+      * [Output](#output-46)
+    * [For test](#for-test)
+      * [Run](#run-47)
+      * [Output](#output-47)
+    * [For testing-environment-update](#for-testing-environment-update)
+      * [Run](#run-48)
+      * [Output](#output-48)
+    * [For update](#for-update)
+      * [Run](#run-49)
+      * [Output](#output-49)
+    * [For version-bump](#for-version-bump)
+      * [Run](#run-50)
+      * [Output](#output-50)
+<!-- TOC -->
 
-A program to manage a rust team.
-
-- It's purpose tools to:
-  - Commit message
-  - Generate change log
-  - Create && finish features
-  - Manage branches
-  - Manages tags
-  - Display tags
-  - See git logs
-  - Add && send modifications
-  - Create a branch with stash
-  - See branches with the latest commit
-  - remove cargo dependencies
-  - Use the `hunspell` dictionary for commit message
-  - Install cargo project locally
-  - No commit hooks necessary
-  - Run test
-  - Run clippy linter
-  - Run `cargo fmt` automaticaly to format code source
-
-> it's require `hunspell` command available and `en_US` dict installed.
-
-## Installation depedencies
-
-### Fedora
+# Installation
 
 ```bash
-sudo dnf install hunspell hunspell-en_US rustup git
+cargo install commiter --features git --features cli
 ```
 
-### Debian
+> Supported : git mercurial fossil pijul
+
+## Help
 
 ```bash
-sudo apt install hunspell hunspell-en_US rustup git python-pip
+commiter --help
 ```
 
-### Silverblue
+## Templates
+
+### List
 
 ```bash
-rpm-ostree install hunspell hunspell-en_US rustup git python-pip
+commiter template list
 ```
 
-### ArchLinux
+### Add
 
 ```bash
-sudo pacman -S hunspell hunspell-en_US rustup git python-pip
+commiter template add
 ```
 
-### Cargo initialisation
+### Remove
 
 ```bash
-rustup default stable
+commiter template remove -t template
 ```
 
-### Git fame
+### Available by default
+
+```text
+templates
+├── alerting-update.txt
+├── api-change.txt
+├── api-documentation.txt
+├── api.txt
+├── audit.txt
+├── backup-creation.txt
+├── build.txt
+├── cache-update.txt
+├── cherry-pick.txt
+├── chore.txt
+├── ci.txt
+├── cleanup.txt
+├── compliance.txt
+├── config.txt
+├── database-migration.txt
+├── dependency-removal.txt
+├── dependency-update.txt
+├── deployment.txt
+├── deprecate.txt
+├── deprecation-notice.txt
+├── docs.txt
+├── experiment.txt
+├── feat.txt
+├── feature-addition.txt
+├── feature-toggle.txt
+├── fix.txt
+├── hotfix.txt
+├── hotpatch.txt
+├── log-rotation-update.txt
+├── log-update.txt
+├── merge.txt
+├── migration.txt
+├── minor-update.txt
+├── monitoring-update.txt
+├── optimize.txt
+├── perf.txt
+├── refactor.txt
+├── remove.txt
+├── revert.txt
+├── rollback-deployment.txt
+├── rollback.txt
+├── schema-update.txt
+├── secret-update.txt
+├── security-patch.txt
+├── security.txt
+├── services.txt
+├── squash.txt 
+├── style.txt
+├── testing-environment-update.txt
+├── test.txt
+├── update.txt
+└── version-bump.txt
+
+1 directory, 52 files
+```
+
+### Get templates
 
 ```bash
-pip install git-fame
+git clone https://github.com/otechdo/commit /tmp/commit && cp -rv /tmp/commit/templates $HOME/templates
 ```
 
-### Commiter installation
+## Usage
+
+require manual track files
+
+### For alerting-update
+
+#### Run
 
 ```bash
-cargo install cargo-watch zuu teams
+commiter commit -t alerting-update
 ```
 
-### Commit Message Format
+#### Output
 
-```git
-<type>(<scope>): <short summary>
+```text
+ALERTING UPDATE: {{ commit_message }}
 
-[Description with more details]
+Details:
 
-[Why changes details]
+    * Alerts added/modified for: {{ system_or_service }}.
+    * New thresholds: {{ new_thresholds }}.
+    * Notifications sent to: {{ notification_channels }}.
+    * Reason for update: {{ reason_for_update }}.
 
-[Footer]
+Impact:
+
+    * Incident detection improved.
+    * Response time improved: {{ response_time_improvement }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
 ```
 
-### Commit Types
+### For api-change
 
-| Category                          | Commit Type                | Mnemonic                                                                                           | Description                                                    | Example                                                                                 |
-| :-------------------------------- | :------------------------- | :------------------------------------------------------------------------------------------------- | :------------------------------------------------------------- | :-------------------------------------------------------------------------------------- |
-| **Core Changes**                  | Star                       | Shiny Technology Added or Refined                                                                  | New feature or enhancement                                     | `Star(Auth): Implement two-factor authentication`                                       |
-|                                   | Comet                      | Code or Module Error Terminated                                                                    | Bug fix or error resolution                                    | `Comet(UI): Fix responsive layout issue on mobile devices`                              |
-|                                   | Nebula                     | New Efficient Better Understandable Logic Achieved                                                 | Code refactoring                                               | `Nebula(Backend): Refactor user management module for improved maintainability`         |
-|                                   | Pulsar                     | Powerful Upgrade, Less Sluggish, Agile Response                                                    | Performance improvement                                        | `Pulsar(Database): Optimize queries for faster response times`                          |
-|                                   | Quasar                     | Quick Adjustments for Superior Accuracy and Readability                                            | Documentation or clarity improvement                           | `Quasar(API): Update documentation with new endpoint parameters`                        |
-| **Maintenance & Infrastructure**  | Asteroid Belt              | Adjustments, Sweeps, Tidy-ups, Elimination, Reordering of Items, Decrease Bloat                    | Code cleanup and maintenance                                   | `Asteroid Belt: Remove unused CSS and optimize images`                                  |
-|                                   | Solar Flare                | Securing Our Logic Against Regressions, Failures, and Latencies Actively, Rigorously Ensured       | Adding or updating tests (unit, integration, end-to-end).      | `Solar Flare(Payments): Add unit tests for payment processing module`                   |
-|                                   | Dwarf Planet               | Details Warranted Attention, Refined Further, Polished Little Aspects Neatly Enhanced Tiny         | Minor but essential updates or fixes.                          | `Dwarf Planet: Update project dependencies to latest versions`                          |
-|                                   | Terraform                  | Technology Engineering Resources Readily Automated, Foundation of Reliable Management              | Infrastructure changes                                         | `Terraform(AWS): Provision new EC2 instance for staging environment`                    |
-| **Project Events**                | Black Hole                 | Big Legacy Aspects Consumed, Killing Heavy, Old Loads Entirely                                     | Removing large chunks of code or features                      | `Black Hole: Remove deprecated user profile module`                                     |
-|                                   | Wormhole                   | Weaving or Reconnecting Modules, Hitching onto Linked Elements                                     | Merging branches or connecting code parts                      | `Wormhole: Merge feature/new-dashboard into develop branch`                             |
-|                                   | Big Bang                   | Birth of Initial Greatness, Beginning All New Growth                                               | Initial commit of a project or major feature                   | `Big Bang: Initial project setup and scaffolding`                                       |
-|                                   | Launch                     | Lifting Application Upward, New Code Entering Production                                           | Deploying to production or releasing a version                 | `Launch(v1.2): Release new version with user profile customization`                     |
-| **Communication & Collaboration** | Lightspeed                 | Lightening Speed Enhancements                                                                      | Significant performance improvements                           | `Lightspeed(Frontend): Implement lazy loading for images`                               |
-|                                   | Mission Control            | Managing Changes, Issues, Scope, Teamwork, and Release On Time                                     | Project management changes                                     | `Mission Control: Update project roadmap and assign tasks for Q3`                       |
-|                                   | Spacewalk                  | Swift Work Above Limits, Keeping All Systems Extra Safe                                            | Urgent hotfixes or critical production updates.                | `Spacewalk(Security): Patch critical vulnerability in authentication module`            |
-|                                   | Moon Landing               | Major Leaps Over Night, New Doors and Incredible Achievements                                      | Completing major milestones or goals                           | `Moon Landing: Successfully launch beta version to select users`                        |
-|                                   | First Contact              | Forge Initial Connections, Open New Territories                                                    | Establishing initial connections or integrations               | `First Contact(API): Integrate with new payment provider's API`                         |
-|                                   | Interstellar Communication | Informing, Sharing, Teaching, Educating, & Learning Lucidly & Clearly                              | Improving documentation or communication                       | `Interstellar Communication: Update wiki with troubleshooting guide for common errors`  |
-| **Celestial Events**              | Solar Eclipse              | Sun Escapes, Legacy Code Lurks                                                                     | Temporarily masking functionality.                             | `Solar Eclipse(Feature): Temporarily disable new onboarding flow for testing`           |
-|                                   | Supernova                  | Sudden Unbelievable Performance Revolution, New Version Arrives                                    | Major, transformative change or improvement.                   | `Supernova(Architecture): Migrate to microservices architecture`                        |
-|                                   | Meteor Shower              | Many Edits, Tiny Overall Result, Overhaul Routines                                                 | Series of small changes or fixes.                    Secondary | Lunar Eclipse                                                                           |
-|                                   | Cosmic Dawn                | Creating Original, Simple, Minimal Initial Draft                                                   | Initial implementation of a feature.                           | `Cosmic Dawn(Search): Initial implementation of basic search functionality`             |
-|                                   | Solar Storm                | Sudden Transformations Occur Rapidly, Modifications                                                | Rapid, impactful changes.                                      | `Solar Storm(Refactor): Overhaul data processing pipeline for improved performance`     |
-|                                   | Lunar Transit              | Little Update, Now Adjustments Require Testing                                                     | Minor, temporary change.                                       | `Lunar Transit(Config): Temporarily adjust logging level for debugging`                 |
-|                                   | Perihelion                 | Perfect Ending, Refined, Improved, High Efficiency, Low Obstacles, Near Goal                       | Significant milestone or feature completion.                   | `Perihelion: Successfully complete user acceptance testing for new dashboard`           |
-|                                   | Aphelion                   | Away From Perfection, High Effort, Long Overhaul, Intense Overhaul, Obstacles                      | Refactor, dependency update, or architecture change.           | `Aphelion: Upgrade to React 18 and refactor components`                                 |
-| **Celestial Objects**             | White Dwarf                | Writing, Improving, Detailed Documentation For All                                                 | Improving code comments or documentation                       | `White Dwarf(API): Add detailed documentation for new endpoints`                        |
-|                                   | Red Giant                  | Refactoring, Enhancing, Growing, Increasing, Adding New Things                                     | Expanding a feature or functionality                           | `Red Giant(Payments): Add support for Apple Pay and Google Pay`                         |
-|                                   | Neutron Star               | New Efficient Utility, Tweaks, Robust Optimization, Nimble Solution                                | Optimizing code for performance                                | `Neutron Star(Search): Optimize search algorithm for faster results`                    |
-|                                   | Binary Star                | Bringing In New And Revised, Yielding Integrated Results                                           | Merging features or components                                 | `Binary Star: Merge user authentication and authorization modules`                      |
-|                                   | Brown Dwarf                | Barely Developed, Requires Work, Ongoing Development For Future                                    | Undeveloped feature with potential                             | `Brown Dwarf(Social): Initial prototype for social sharing feature`                     |
-|                                   | Quark Star                 | Questionable, Unstable, Anticipated Results, Risky, Keen Experiment                                | Experimental or speculative change                             | `Quark Star(AI): Experiment with integrating GPT-3 for content generation`              |
-|                                   | Rogue Planet               | Refactoring Or Generating Operations, Unique Path, Leaping Ahead                                   | Independent change unrelated to the main codebase              | `Rogue Planet: Create standalone script for data migration`                             |
-|                                   | Stellar Nursery            | Starting To Enhance, Laying Layers, Launching New Requirements                                     | Creating new components                                        | `Stellar Nursery(UI): Add new component library for design system`                      |
-|                                   | Planetary Nebula           | Pruning, Leaving, Abandoning, Nostalgic Era, Totally Removed                                       | Removal or deprecation of a component                          | `Planetary Nebula: Remove legacy image carousel component`                              |
-|                                   | Globular Cluster           | Gathering, Linking, Operations, Bringing Unity, Lots of Adjustments, All Related                   | Collection of related changes                                  | `Globular Cluster(Refactor): Refactor multiple API endpoints for consistency`           |
-|                                   | Void                       | Vanished, Obliterated, Irrelevant, Deleted                                                         | Removal of a module, component, or feature                     | `Void: Remove unused user settings module`                                              |
-| **Astronomical Concepts**         | Gravity                    | Glitch Resolution, Adjusting Versions, Integrating, Troubleshooting Yielding                       | Resolving merge conflicts or dependencies                      | `Gravity: Resolve merge conflicts in feature/new-navigation branch`                     |
-|                                   | Dark Matter                | Debugging And Resolving Mysterious Attributes, Tricky issues Removed                               | Fixing unknown or mysterious bugs                              | `Dark Matter: Fix intermittent crash on user login`                                     |
-|                                   | Time Dilation              | Time Is Dilated, Improvements Leverage Agility, Time-Saving                                        | Improving code performance or reducing execution time.         | `Time Dilation(Backend): Optimize image processing algorithm for faster response`       |
-|                                   | Spacetime                  | Scheduling, Planning, Adjusting Calendar Events, Coordinating Time                                 | Changes to date, time, or scheduling                           | `Spacetime(API): Fix timezone handling for event timestamps`                            |
-|                                   | Gravitational Lensing      | Gravity Redirects Light, Altering Information Pathways                                             | Altering data or information flow                              | `Gravitational Lensing(Data): Refactor data pipeline for improved throughput`           |
-|                                   | Cosmic String              | Connecting Our Sections, Merging Together, Interlinking New Groups                                 | Connecting code parts                                          | `Cosmic String(API): Connect user service with authentication middleware`               |
-|                                   | Quantum Fluctuation        | Quick Unpredictable Adjustments, Noticed Tiny Unexpected Modification                              | Small, random change                                           | `Quantum Fluctuation: Fix typo in error message`                                        |
-|                                   | Hawking Radiation          | Hastily And Willingly Killing Redundancies, Ageing Dead-ends, Tidying In Order, Obliterating Noise | Removing technical debt                                        | `Hawking Radiation: Remove unused CSS classes and refactor styles`                      |
-|                                   | Quantum Entanglement       | Quantum Effects Never Tangled, Greater Efficiency, Linked Adjustments                              | Establishing close relationships between code parts            | `Quantum Entanglement(API): Tightly couple user profile and order history endpoints`    |
-|                                   | Gravitational Redshift     | Gravity Reduces Efficiency, Degraded Speed, Shift Happens                                          | Slowing down or reducing code performance                      | `Gravitational Redshift(UI): Disable unnecessary animations for low-end devices`        |
-| **Space Exploration**             | Space Probe                | Surveying, Planning, Analysing, Checking Every Nook                                                | Testing new features or technologies                           | `Space Probe(AI): Experiment with ChatGPT integration for customer support`             |
-|                                   | Space Station              | Setting Up The Area, Testing In Orbit, Optimising New                                              | Creating or improving environments                             | `Space Station(DevOps): Set up new development environment with Docker`                 |
-|                                   | Rocket Launch              | Releasing Our Code, Keenly Entering The Production                                                 | Deploying to production                                        | `Rocket Launch(v1.5): Deploy new version to production with enhanced security features` |
-|                                   | Spacewalk                  | Swift Patches And Lookout Work, Keeping Systems Extra safe                                         | Urgent production hotfixes                                     | `Spacewalk(Database): Fix critical database connection issue causing downtime`          |
-|                                   | Space Elevator             | Streamlined Access, Providing Easy Vertical On boarding, Lifting Entries                           | Making code base more accessible                               | `Space Elevator(API): Add new public API endpoints for third-party integrations`        |
+#### Run
 
-## Commit Message Management with Cosmic Types
+```bash
+commiter commit -t api-change
+```
 
-### What are they?
+#### Output
 
-- **Commit Message Management:** The practice of writing clear, consistent, and informative commit messages to improve project collaboration and understanding.
-- **Cosmic Commit Types:** A specific convention for commit messages that uses terms and concepts from astronomy and space exploration to categorise changes. This makes messages more engaging and easier to interpret.
+```text
+API CHANGE: {{ commit_message }}
 
-### Why use commit message management?
+Details:
 
-- **Enhanced Collaboration:** Clear messages help team members understand the context and purpose of each change.
+    * API endpoint changed: {{ endpoint }}.
+    * Reason for change: {{ reason_for_change }}.
+    * Breaking changes: {{ breaking_changes }}.
+    * New parameters: {{ new_parameters }}.
+    * Deprecated endpoints: {{ deprecated_endpoints }}.
 
-- **Improved History Tracking:** Well-structured commit logs make it easier to trace the development process, find specific changes, and generate meaningful changelogs.
+Impact:
 
-- **Streamlined Review:** Concise and descriptive messages simplify code reviews and help identify potential issues faster.
+    * API consumers impact: {{ consumer_impact }}.
+    * Response time improvement: {{ response_time_improvement }}.
 
-- **1. Team Adoption:**
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
 
-  - **Discuss and Agree:** Initiate a conversation with your team about using cosmic commit types. Explain the benefits, share this comprehensive guide, and gather feedback.
-  - **Customise:** Collaboratively decide on the specific commit types you want to use. You can start with the comprehensive list provided here and tailor it to your project's specific needs and preferences.
-  - **Document:** Create a clear and concise reference document outlining the chosen commit types, their meanings, and examples. Make this document easily accessible to all team members.
+### For api-documentation
 
-  **2. Implementation:**
+#### Run
 
-  - **Manual Approach:** You can start using cosmic commit types manually by simply adhering to the `<type>(<scope>): <short summary>` format in your commit messages.
-  - **Git Commit Template:** Create a Git commit template file (e.g., `.gitmessage`) to automatically populate the commit message format in your editor. This can help enforce consistency and remind contributors of the available commit types.
-  - **Git Hooks:** Utilize Git hooks, like the `prepare-commit-msg` hook, to validate your commit messages and ensure they conform to the chosen format.
-  - **Automated Tools:** Consider leveraging tools like `commitizen` or `cz-cli` that provide interactive prompts for creating commit messages according to your chosen convention. These tools can streamline the process and enforce consistency across your team.
+```bash
+commiter commit -t api-documentation
+```
 
-  **3. Continuous Improvement:**
+#### Output
 
-  - **Regular Review:** Periodically review your team's commit history to ensure consistent usage of the cosmic commit types and identify any areas where the format could be refined or improved.
-  - **Feedback Loop:** Encourage open communication and feedback from your team members about the effectiveness of the chosen commit types and any suggestions for improvement.
-  - **Iterative Refinement:** Don't be afraid to experiment and adapt the commit types to better suit your evolving project needs. The key is to find a system that works well for your team and enhances your Git workflow.
+```text
+API DOCUMENTATION: {{ commit_message }}
 
-  **4. Continuous Improvement:**
+Details:
 
-  - **Encourage Creativity:** While maintaining consistency, allow team members to add their own flair and personality to the commit messages within the established framework.
-  - **Celebrate Milestones:** Use special event commit types like "Moon Landing" to celebrate significant achievements and keep your team motivated.
-  - **Integration with Other Tools:** Explore integration options with your issue tracking system, CI/CD pipeline, or documentation tools to automate processes and maximise the benefits of using cosmic commit types.
+    * Documentation updated for: {{ api_endpoint }}.
+    * Changes applied: {{ changes_applied }}.
+    * New sections added: {{ new_sections }}.
 
-  By embracing this comprehensive guide and incorporating cosmic commit types into your Git workflow, you can transform your commit history into a vibrant, informative, and enjoyable reflection of your project's journey.
+Impact:
 
-  The overall goal of Cosmic Commits is to make Git commit messages more informative, engaging, and enjoyable for developers, ultimately leading to better collaboration, maintainability, and understanding of the project's history.
+    * Documentation completeness improved.
+    * API consumer understanding enhanced.
 
-### Why automate commit messages?
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
 
-While Angular Commit Message Conventions provide a clear and structured format, enforcing it manually can be cumbersome and error-prone. Automated commit message generation tools help you:
+### For api
 
-- **Ensure Consistency:** All commit messages adhere to the convention, making the Git history more organized and easier to analyze.
-- **Save Time:** Contributors don't have to manually format messages, leading to a more efficient workflow.
-- **Reduce Errors:**  The tool guides contributors to create valid messages, preventing typos or inconsistencies.
+#### Run
 
-### Why use cosmic commit types specifically?
+```bash
+commiter commit -t api
+```
 
-- **Descriptive:** Terms like "Star" (new feature) or "Comet" (bug fix) are instantly recognisable and convey the nature of the change at a glance.
-- **Engaging:** The cosmic theme adds a fun and memorable element to commit messages.
-- **Standardised:** Provides a shared vocabulary and structured format for commit messages, improving consistency across the team.
+#### Output
 
-### Why cosmos commit type ?
+```text
+API CHANGE: {{ commit_message }}
 
-Cosmic commit types offer a unique and engaging way to categorise and describe changes in your Git commit history. Here's why they are beneficial:
+Details:
 
-**Enhanced Clarity and Communication:**
+    * API endpoint affected: {{ endpoint }}.
+    * Change type: {{ change_type }} (Addition, Modification, Removal).
+    * Breaking changes: {{ breaking_changes }}.
+    * New parameters: {{ new_parameters }}.
+    * Deprecated endpoints: {{ deprecated_endpoints }}.
 
-- **Descriptive Labels:** Using terms like "Star" for new features, "Comet" for bug fixes, or "Nebula" for refactoring instantly conveys the nature of the change to anyone reading the commit log. This improves communication and understanding within the team.
-- **Visual Scanning:** The use of vivid imagery associated with celestial bodies and events makes it easier to quickly scan through a commit history and identify specific types of changes.
-- **Contextual Information:** The optional addition of a scope within the commit message provides further context about which part of the code base was affected (e.g., "Star(UI)" for a new UI feature).
+Impact:
 
- **Improved Organisation and Maintainability:**
+    * Impact on API consumers: {{ consumer_impact }}.
+    * Documentation updated: {{ documentation_update }}.
 
-- **Structured Format:** The consistent format of cosmic commit messages (e.g., "Type(Scope): Short summary") makes the commit history more organised and easier to parse. This helps with tasks like generating change logs or filtering commits based on specific criteria.
-- **Streamlined History:** A well-organised commit history makes it easier to track the evolution of the project, identify patterns, and quickly pinpoint the introduction of specific changes.
+Author: {{ author }}
+Date: {{ commit_date }}
 
-**Increased Engagement and Fun:**
+Parent Commit: {{ parent_commit }}
+```
 
-- **Creative Expression:** The cosmic theme adds a touch of personality and fun to the often mundane task of writing commit messages. It can make the development process more enjoyable and engaging for the team.
-- **Shared Vocabulary:** Using a common set of commit types fosters a sense of shared understanding and camaraderie within the team. It can also serve as a fun conversation starter or icebreaker.
+### For audit
 
-**Automation and Tooling:**
+#### Run
 
-- **Change log Generation:** Many tools can automatically generate change logs or release notes by parsing commit messages. Cosmic commit types make this process even easier by providing a clear structure and consistent vocabulary that tools can easily understand.
-- **Issue Tracking Integration:** If you reference issue numbers in your commit messages, some tools can automatically link commits to their corresponding issues, streamlining your workflow and keeping your project management tools up-to-date
+```bash
+commiter commit -t audit
+```
+
+#### Output
+
+```text
+AUDIT: {{ commit_message }}
+
+Details:
+
+    * Audit conducted on: {{ system_or_service }}.
+    * Security vulnerabilities found: {{ vulnerabilities_found }}.
+    * Recommended actions: {{ recommended_actions }}.
+
+Impact:
+
+    * System security posture improved.
+    * Compliance status: {{ compliance_status }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For backup-creation
+
+#### Run
+
+```bash
+commiter commit -t backup-creation
+```
+
+#### Output
+
+```text
+BACKUP CREATION: {{ commit_message }}
+
+Details:
+
+    * Backup created for: {{ system_or_service }}.
+    * Data size: {{ data_size }}.
+    * Storage location: {{ storage_location }}.
+
+Impact:
+
+    * Backup ensures data integrity and recovery options.
+    * Backup time: {{ backup_time }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For build
+
+#### Run
+
+```bash
+commiter commit -t build
+```
+
+#### Output
+
+```text
+BUILD: {{ commit_message }}
+
+Dependency update:
+
+    * Updated dependencies: {{ dependencies_updated }}.
+    * Reason for update: {{ reason_for_update }}.
+    * Version change: {{ version_change }}.
+
+Impact:
+
+    * Build stability and performance improved.
+    * Issues resolved: {{ issues_resolved }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For cache-update
+
+#### Run
+
+```bash
+commiter commit -t cache-update
+```
+
+#### Output
+
+```text
+CACHE UPDATE: {{ commit_message }}
+
+Details:
+
+    * Cache updated for: {{ system_or_service }}.
+    * Cache expiry set to: {{ cache_expiry }}.
+    * Cache invalidated for: {{ invalidated_items }}.
+
+Impact:
+
+    * Improved system performance and data freshness.
+    * Response time improvement: {{ response_time_improvement }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For cherry-pick
+
+#### Run
+
+```bash
+commiter commit -t cherry-pick
+```
+
+#### Output
+
+```text
+CHERRY PICK: {{ commit_message }}
+
+Details:
+
+    * Commit cherry-picked from: {{ source_branch }}.
+    * Reason for cherry-picking: {{ reason_for_cherry_picking }}.
+
+Impact:
+
+    * Feature/bugfix applied to: {{ target_branch }}.
+    * Conflicts resolved: {{ conflicts_resolved }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For chore
+
+#### Run
+
+```bash
+commiter commit -t chore
+```
+
+#### Output
+
+```text
+CHORE: {{ commit_message }}
+
+Details:
+
+    * Routine task performed: {{ task }}.
+    * System affected: {{ system_or_service }}.
+
+Impact:
+
+    * Codebase maintenance or improvement.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For ci
+
+#### Run
+
+```bash
+commiter commit -t ci
+```
+
+#### Output
+
+```text
+CI UPDATE: {{ commit_message }}
+
+Details:
+
+    * CI pipeline changes: {{ ci_changes }}.
+    * CI tool/version updated: {{ ci_tool_version }}.
+    * CI task added/modified: {{ ci_task }}.
+
+Impact:
+
+    * Build automation improved.
+    * Test coverage impact: {{ test_coverage_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For cleanup
+
+#### Run
+
+```bash
+commiter commit -t cleanup
+```
+
+#### Output
+
+```text
+CLEANUP: {{ commit_message }}
+
+Details:
+
+    * Cleanup performed on: {{ system_or_service }}.
+    * Files/Resources removed: {{ resources_removed }}.
+
+Impact:
+
+    * Codebase or system efficiency improved.
+    * Unnecessary resources removed.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For compliance
+
+#### Run
+
+```bash
+commiter commit -t compliance
+```
+
+#### Output
+
+```text
+COMPLIANCE: {{ commit_message }}
+
+Details:
+
+    * Compliance rule applied: {{ compliance_rule }}.
+    * System/Module affected: {{ system_or_module }}.
+    * Compliance standard: {{ compliance_standard }}.
+    * Audit trail updated: {{ audit_trail_updated }}.
+
+Impact:
+
+    * Compliance with {{ compliance_standard }} ensured.
+    * Legal and regulatory risks reduced.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For config
+
+#### Run
+
+```bash
+commiter commit -t config
+```
+
+#### Output
+
+```text
+CONFIG: {{ commit_message }}
+
+Details:
+
+    * Configuration changed for: {{ system_or_service }}.
+    * New configuration values: {{ new_configuration }}.
+    * Previous configuration values: {{ previous_configuration }}.
+
+Impact:
+
+    * Configuration changes ensure: {{ configuration_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For database-migration
+
+#### Run
+
+```bash
+commiter commit -t database-migration
+```
+
+#### Output
+
+```text
+DATABASE MIGRATION: {{ commit_message }}
+
+Details:
+
+    * Migration type: {{ migration_type }}.
+    * Affected tables: {{ affected_tables }}.
+    * Data integrity check: {{ data_integrity_check }}.
+    * Downtime required: {{ downtime_required }}.
+
+Impact:
+
+    * Data migration impact: {{ data_migration_impact }}.
+    * Performance impact: {{ performance_impact }}.
+    * Backup status: {{ backup_status }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For dependency-removal
+
+#### Run
+
+```bash
+commiter commit -t dependency-removal
+```
+
+#### Output
+
+```text
+DEPENDENCY REMOVAL: {{ commit_message }}
+
+Details:
+
+    * Removed dependencies: {{ removed_dependencies }}.
+    * Reason for removal: {{ reason_for_removal }}.
+    * Affected modules: {{ affected_modules }}.
+
+Impact:
+
+    * Codebase size reduced.
+    * Build time improvements: {{ build_time_improvements }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For dependency-update
+
+#### Run
+
+```bash
+commiter commit -t dependency-update
+```
+
+#### Output
+
+```text
+DEPENDENCY UPDATE: {{ commit_message }}
+
+Details:
+
+    * Updated dependencies: {{ updated_dependencies }}.
+    * Reason for update: {{ reason_for_update }}.
+    * Previous version: {{ previous_version }}.
+    * Updated version: {{ updated_version }}.
+
+Impact:
+
+    * Performance and security improvements.
+    * Issues resolved: {{ issues_resolved }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For deployment
+
+#### Run
+
+```bash
+commiter commit -t deployment
+```
+
+#### Output
+
+```text
+DEPLOYMENT: {{ commit_message }}
+
+Details:
+
+    * Deployed version: {{ deployed_version }}.
+    * Environment: {{ environment }} (e.g., production, staging).
+    * Downtime duration: {{ downtime_duration }}.
+
+Impact:
+
+    * System/service availability: {{ availability_status }}.
+    * Issues during deployment: {{ deployment_issues }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For deprecate
+
+#### Run
+
+```bash
+commiter commit -t deprecate
+```
+
+#### Output
+
+```text
+DEPRECATE: {{ commit_message }}
+
+Details:
+
+    * Deprecated feature: {{ deprecated_feature }}.
+    * Replacement feature: {{ replacement_feature }}.
+    * Reason for deprecation: {{ reason_for_deprecation }}.
+
+Impact:
+
+    * Users need to migrate to: {{ replacement_feature }}.
+    * Migration guide available: {{ migration_guide }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For deprecation-notice
+
+#### Run
+
+```bash
+commiter commit -t deprecation-notice
+```
+
+#### Output
+
+```text
+DEPRECATION NOTICE: {{ commit_message }}
+
+Details:
+
+    * Feature to be deprecated: {{ feature_to_deprecate }}.
+    * Deprecation timeline: {{ deprecation_timeline }}.
+    * Replacement feature: {{ replacement_feature }}.
+
+Impact:
+
+    * User migration required.
+    * End of life date: {{ eol_date }}.
+    * Documentation updated: {{ documentation_update }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For docs
+
+#### Run
+
+```bash
+commiter commit -t docs
+```
+
+#### Output
+
+```text
+DOCUMENTATION UPDATE: {{ commit_message }}
+
+Details:
+
+    * Sections updated: {{ updated_sections }}.
+    * New sections added: {{ new_sections }}.
+    * Technical changes documented: {{ changes_documented }}.
+
+Impact:
+
+    * Documentation completeness improved.
+    * User/Developer guidance enhanced.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For experiment
+
+#### Run
+
+```bash
+commiter commit -t experiment
+```
+
+#### Output
+
+```text
+EXPERIMENT: {{ commit_message }}
+
+Details:
+
+    * Experimental feature: {{ experimental_feature }}.
+    * Hypothesis: {{ hypothesis }}.
+    * Test duration: {{ test_duration }}.
+    * Metrics to be tracked: {{ tracked_metrics }}.
+
+Impact:
+
+    * Experiment outcomes will inform: {{ outcome_impact }}.
+    * Risks: {{ risks }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For feat
+
+#### Run
+
+```bash
+commiter commit -t feat
+```
+
+#### Output
+
+```text
+FEATURE ADDITION: {{ commit_message }}
+
+Details:
+
+    * New feature: {{ feature_name }}.
+    * Reason for addition: {{ reason_for_addition }}.
+    * Affected modules: {{ affected_modules }}.
+
+Impact:
+
+    * User experience enhanced.
+    * New capabilities available: {{ new_capabilities }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For feature-addition
+
+#### Run
+
+```bash
+commiter commit -t feature-addition
+```
+
+#### Output
+
+```text
+FEATURE ADDITION: {{ commit_message }}
+
+Details:
+
+    * Feature added: {{ feature_name }}.
+    * Reason for addition: {{ reason_for_addition }}.
+    * Modules affected: {{ affected_modules }}.
+    * Dependencies introduced: {{ dependencies_introduced }}.
+
+Impact:
+
+    * New functionality: {{ new_functionality }}.
+    * User benefit: {{ user_benefit }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For feature-toggle
+
+#### Run
+
+```bash
+commiter commit -t feature-toggle
+```
+
+#### Output
+
+```text
+FEATURE TOGGLE: {{ commit_message }}
+
+Details:
+
+    * Feature toggled: {{ feature_toggled }}.
+    * Reason for toggling: {{ reason_for_toggling }}.
+    * Status: {{ toggle_status }} (Enabled/Disabled).
+
+Impact:
+
+    * Modules affected: {{ affected_modules }}.
+    * User impact: {{ user_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For fix
+
+#### Run
+
+```bash
+commiter commit -t fix
+```
+
+#### Output
+
+```text
+FIX: {{ commit_message }}
+
+Details:
+
+    * Issue fixed: {{ issue_fixed }}.
+    * Module affected: {{ affected_module }}.
+    * Root cause: {{ root_cause }}.
+    * Solution applied: {{ solution_applied }}.
+
+Impact:
+
+    * System stability restored.
+    * Incident resolution time: {{ resolution_time }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For hotfix
+
+#### Run
+
+```bash
+commiter commit -t hotfix
+```
+
+#### Output
+
+```text
+HOTFIX: {{ commit_message }}
+
+Details:
+
+    * Issue hotfixed: {{ issue_hotfixed }}.
+    * Reason for hotfix: {{ reason_for_hotfix }}.
+    * Affected module: {{ affected_module }}.
+    * Patch applied: {{ patch_applied }}.
+
+Impact:
+
+    * Service disruption minimized.
+    * Immediate resolution: {{ resolution_time }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For hotpatch
+
+#### Run
+
+```bash
+commiter commit -t hotpatch
+```
+
+#### Output
+
+```text
+HOTPATCH: {{ commit_message }}
+
+Details:
+
+    * Hotpatch applied to: {{ system_or_service }}.
+    * Issue resolved: {{ issue_resolved }}.
+    * Affected module: {{ affected_module }}.
+
+Impact:
+
+    * No downtime required.
+    * System performance restored: {{ system_performance_restored }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For log-rotation-update
+
+#### Run
+
+```bash
+commiter commit -t log-rotation-update
+```
+
+#### Output
+
+```text
+LOG ROTATION UPDATE: {{ commit_message }}
+
+Details:
+
+    * Log rotation policy updated for: {{ system_or_service }}.
+    * New retention period: {{ retention_period }}.
+    * Log rotation frequency: {{ rotation_frequency }}.
+
+Impact:
+
+    * Storage space optimized.
+    * Improved logging efficiency.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For log-update
+
+#### Run
+
+```bash
+commiter commit -t log-update
+```
+
+#### Output
+
+```text
+LOG UPDATE: {{ commit_message }}
+
+Details:
+
+    * Log format updated for: {{ system_or_service }}.
+    * New log format: {{ new_log_format }}.
+    * Affected modules: {{ affected_modules }}.
+
+Impact:
+
+    * Enhanced log readability.
+    * Improved monitoring and troubleshooting.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For merge
+
+#### Run
+
+```bash
+commiter commit -t merge
+```
+
+#### Output
+
+```text
+MERGE: {{ commit_message }}
+
+Details:
+
+    * Merged branch: {{ merged_branch }} into {{ target_branch }}.
+    * Conflicts resolved: {{ conflicts_resolved }}.
+    * Reason for merge: {{ reason_for_merge }}.
+
+Impact:
+
+    * Features/bugfixes merged from: {{ source_branch }}.
+    * Codebase integration improved.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For migration
+
+#### Run
+
+```bash
+commiter commit -t migration
+```
+
+#### Output
+
+```text
+MIGRATION: {{ commit_message }}
+
+Details:
+
+    * Migration type: {{ migration_type }}.
+    * Data migrated: {{ data_migrated }}.
+    * Downtime required: {{ downtime_required }}.
+
+Impact:
+
+    * System functionality: {{ system_functionality_impact }}.
+    * Data integrity maintained: {{ data_integrity }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For minor-update
+
+#### Run
+
+```bash
+commiter commit -t minor-update
+```
+
+#### Output
+
+```text
+MINOR UPDATE: {{ commit_message }}
+
+Details:
+
+    * Minor update applied to: {{ system_or_service }}.
+    * Affected modules: {{ affected_modules }}.
+    * Changes: {{ changes }}.
+
+Impact:
+
+    * Small improvements or bugfixes.
+    * No significant impact on functionality.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For monitoring-update
+
+#### Run
+
+```bash
+commiter commit -t monitoring-update
+```
+
+#### Output
+
+```text
+MONITORING UPDATE: {{ commit_message }}
+
+Details:
+
+    * Monitoring system updated for: {{ system_or_service }}.
+    * New monitoring thresholds: {{ new_thresholds }}.
+    * Alerts configuration: {{ alerts_configuration }}.
+
+Impact:
+
+    * Improved system visibility.
+    * Faster response to incidents.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For optimize
+
+#### Run
+
+```bash
+commiter commit -t optimize
+```
+
+#### Output
+
+```text
+OPTIMIZATION: {{ commit_message }}
+
+Details:
+
+    * Module optimized: {{ optimized_module }}.
+    * Performance bottleneck resolved: {{ bottleneck }}.
+    * Resource usage reduced: {{ resource_usage_reduction }}.
+
+Impact:
+
+    * System performance improved.
+    * Response time improvement: {{ response_time_improvement }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For perf
+
+#### Run
+
+```bash
+commiter commit -t perf
+```
+
+#### Output
+
+```text
+PERFORMANCE IMPROVEMENT: {{ commit_message }}
+
+Details:
+
+    * Performance optimized for: {{ system_or_service }}.
+    * Reason for improvement: {{ reason_for_improvement }}.
+    * Bottleneck resolved: {{ bottleneck }}.
+
+Impact:
+
+    * Improved performance metrics.
+    * System response time reduced by: {{ response_time_improvement }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For refactor
+
+#### Run
+
+```bash
+commiter commit -t refactor
+```
+
+#### Output
+
+```text
+REFACTOR: {{ commit_message }}
+
+Details:
+
+    * Refactor applied to: {{ affected_module }}.
+    * Reason for refactor: {{ reason_for_refactor }}.
+    * Code structure improved in: {{ improved_structure }}.
+
+Impact:
+
+    * Code readability enhanced.
+    * Performance impact: {{ performance_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For remove
+
+#### Run
+
+```bash
+commiter commit -t remove
+```
+
+#### Output
+
+```text
+REMOVE: {{ commit_message }}
+
+Details:
+
+    * Feature removed: {{ removed_feature }}.
+    * Reason for removal: {{ reason_for_removal }}.
+    * Modules affected: {{ affected_modules }}.
+
+Impact:
+
+    * Unused or deprecated code eliminated.
+    * Codebase simplified and optimized.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For revert
+
+#### Run
+
+```bash
+commiter commit -t revert
+```
+
+#### Output
+
+```text
+REVERT: {{ commit_message }}
+
+Details:
+
+    * Reverted commit: {{ reverted_commit }}.
+    * Reason for revert: {{ reason_for_revert }}.
+    * Changes undone: {{ changes_undone }}.
+
+Impact:
+
+    * Codebase restored to a previous stable state.
+    * Issues with the reverted commit resolved.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For rollback-deployment
+
+#### Run
+
+```bash
+commiter commit -t rollback-deployment
+```
+
+#### Output
+
+```text
+ROLLBACK DEPLOYMENT: {{ commit_message }}
+
+Details:
+
+    * Rolled back version: {{ rolled_back_version }}.
+    * Reason for rollback: {{ reason_for_rollback }}.
+    * Downtime duration: {{ downtime_duration }}.
+
+Impact:
+
+    * Previous stable version restored.
+    * System availability ensured.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For rollback
+
+#### Run
+
+```bash
+commiter commit -t rollback
+```
+
+#### Output
+
+```text
+ROLLBACK: {{ commit_message }}
+
+Details:
+
+    * Rolled back changes: {{ rolled_back_changes }}.
+    * Reason for rollback: {{ reason_for_rollback }}.
+    * Affected modules: {{ affected_modules }}.
+
+Impact:
+
+    * System restored to a stable state.
+    * Risk of system instability mitigated.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For schema-update
+
+#### Run
+
+```bash
+commiter commit -t schema-update
+```
+
+#### Output
+
+```text
+SCHEMA UPDATE: {{ commit_message }}
+
+Details:
+
+    * Database schema updated for: {{ affected_database }}.
+    * New schema version: {{ schema_version }}.
+    * Tables/Columns affected: {{ affected_tables }}.
+
+Impact:
+
+    * Database integrity maintained.
+    * System performance: {{ performance_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For secret-update
+
+#### Run
+
+```bash
+commiter commit -t secret-update
+```
+
+#### Output
+
+```text
+SECRET UPDATE: {{ commit_message }}
+
+Details:
+
+    * Secret updated for: {{ system_or_service }}.
+    * Secret rotation applied: {{ rotation_applied }}.
+    * Expiry of previous secret: {{ expiry_date }}.
+
+Impact:
+
+    * Security posture improved.
+    * Risk of compromised secrets mitigated.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For security-patch
+
+#### Run
+
+```bash
+commiter commit -t security-patch
+```
+
+#### Output
+
+```text
+SECURITY PATCH: {{ commit_message }}
+
+Details:
+
+    * Vulnerability fixed: {{ vulnerability_fixed }}.
+    * Affected modules: {{ affected_modules }}.
+    * Security risk level: {{ security_risk_level }}.
+
+Impact:
+
+    * System security improved.
+    * Compliance status: {{ compliance_status }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For security
+
+#### Run
+
+```bash
+commiter commit -t security
+```
+
+#### Output
+
+```text
+SECURITY UPDATE: {{ commit_message }}
+
+Details:
+
+    * Security update applied to: {{ system_or_service }}.
+    * Risk mitigated: {{ risk_mitigated }}.
+    * Security protocols enhanced: {{ security_protocols }}.
+
+Impact:
+
+    * System protection improved.
+    * Threat vectors reduced.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For services
+
+#### Run
+
+```bash
+commiter commit -t services
+```
+
+#### Output
+
+```text
+SERVICES UPDATE: {{ commit_message }}
+
+Details:
+
+    * Service updated: {{ service_name }}.
+    * New features introduced: {{ new_features }}.
+    * Performance improvements: {{ performance_improvements }}.
+
+Impact:
+
+    * Service availability: {{ availability_status }}.
+    * User experience enhanced.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For style
+
+#### Run
+
+```bash
+commiter commit -t style
+```
+
+#### Output
+
+```text
+STYLE: {{ commit_message }}
+
+Details:
+
+    * Code style updated for: {{ affected_modules }}.
+    * Linting rules applied: {{ linting_rules }}.
+    * Formatting changes: {{ formatting_changes }}.
+
+Impact:
+
+    * Code readability improved.
+    * Code consistency maintained.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For test
+
+#### Run
+
+```bash
+commiter commit -t test
+```
+
+#### Output
+
+```text
+TEST: {{ commit_message }}
+
+Details:
+
+    * Test written for: {{ feature_or_module }}.
+    * Test coverage improved: {{ test_coverage }}.
+    * Tests passed: {{ tests_passed }}.
+
+Impact:
+
+    * Code reliability improved.
+    * Bugs or issues detected: {{ bugs_detected }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For testing-environment-update
+
+#### Run
+
+```bash
+commiter commit -t testing-environment-update
+```
+
+#### Output
+
+```text
+TESTING ENVIRONMENT UPDATE: {{ commit_message }}
+
+Details:
+
+    * Testing environment updated for: {{ system_or_service }}.
+    * Test coverage improvements: {{ test_coverage }}.
+    * Test suite updated: {{ test_suite_update }}.
+
+Impact:
+
+    * Testing efficiency improved.
+    * More comprehensive test scenarios covered.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For update
+
+#### Run
+
+```bash
+commiter commit -t update
+```
+
+#### Output
+
+```text
+UPDATE: {{ commit_message }}
+
+Details:
+
+    * System update applied to: {{ system_or_service }}.
+    * Changes introduced: {{ changes_introduced }}.
+    * Modules affected: {{ affected_modules }}.
+
+Impact:
+
+    * System functionality improved.
+    * Performance impact: {{ performance_impact }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
+
+### For version-bump
+
+#### Run
+
+```bash
+commiter commit -t version-bump
+```
+
+#### Output
+
+```text
+VERSION BUMP: {{ commit_message }}
+
+Details:
+
+    * Version bumped from: {{ previous_version }} to {{ new_version }}.
+    * Reason for version bump: {{ reason_for_bump }}.
+    * Changes introduced: {{ changes_introduced }}.
+
+Impact:
+
+    * System compatibility ensured.
+    * User notification required: {{ user_notification_required }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
+```
 

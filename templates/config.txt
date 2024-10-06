@@ -1,14 +1,15 @@
 CONFIG: {{ commit_message }}
 
 Details:
-- Configuration changed: {{ config_change_description }}.
-- Reason for change: {{ reason }}.
-- Impact of change: {{ impact }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Configuration changed for: {{ system_or_service }}.
+    * New configuration values: {{ new_configuration }}.
+    * Previous configuration values: {{ previous_configuration }}.
+
+Impact:
+
+    * Configuration changes ensure: {{ configuration_impact }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

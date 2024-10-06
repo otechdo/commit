@@ -1,14 +1,16 @@
 DEPRECATE: {{ commit_message }}
 
 Details:
-- Feature deprecated: {{ feature_name }}.
-- Reason for deprecation: {{ reason_for_deprecation }}.
-- Replacement (if any): {{ replacement }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Deprecated feature: {{ deprecated_feature }}.
+    * Replacement feature: {{ replacement_feature }}.
+    * Reason for deprecation: {{ reason_for_deprecation }}.
+
+Impact:
+
+    * Users need to migrate to: {{ replacement_feature }}.
+    * Migration guide available: {{ migration_guide }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

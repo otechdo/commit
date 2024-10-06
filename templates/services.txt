@@ -1,19 +1,16 @@
-SERVICE UPDATE: {{ commit_message }}
+SERVICES UPDATE: {{ commit_message }}
 
 Details:
-- Service affected: {{ service_name }}.
-- Change type: {{ change_type }} (Addition, Modification, Removal).
-- Reason for change: {{ change_reason }}.
-- Impact on other services: {{ service_impact }}.
 
-Files affected:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Service updated: {{ service_name }}.
+    * New features introduced: {{ new_features }}.
+    * Performance improvements: {{ performance_improvements }}.
 
 Impact:
-- Expected downtime: {{ expected_downtime }}.
-- Service dependencies affected: {{ dependencies }}.
+
+    * Service availability: {{ availability_status }}.
+    * User experience enhanced.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

@@ -1,0 +1,16 @@
+CACHE UPDATE: {{ commit_message }}
+
+Details:
+
+    * Cache updated for: {{ system_or_service }}.
+    * Cache expiry set to: {{ cache_expiry }}.
+    * Cache invalidated for: {{ invalidated_items }}.
+
+Impact:
+
+    * Improved system performance and data freshness.
+    * Response time improvement: {{ response_time_improvement }}.
+
+Author: {{ author }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}

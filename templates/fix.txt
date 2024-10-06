@@ -1,14 +1,17 @@
 FIX: {{ commit_message }}
 
-Bug Details:
-- Issue resolved: {{ bug_id }}.
-- Cause: {{ bug_cause }}.
-- Solution: {{ solution_description }}.
+Details:
 
-Files fixed:
-{% for file in files %}
-  - {{ file }}
-{% endfor %}
+    * Issue fixed: {{ issue_fixed }}.
+    * Module affected: {{ affected_module }}.
+    * Root cause: {{ root_cause }}.
+    * Solution applied: {{ solution_applied }}.
+
+Impact:
+
+    * System stability restored.
+    * Incident resolution time: {{ resolution_time }}.
 
 Author: {{ author }}
-Signed-off-by: {{ signed_off_by }}
+Date:   {{ commit_date }}
+Parent Commit: {{ parent_commit }}
