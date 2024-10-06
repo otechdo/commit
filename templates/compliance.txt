@@ -1,0 +1,17 @@
+COMPLIANCE: {{ commit_message }}
+
+Details:
+- Compliance requirement addressed: {{ compliance_standard }} (GDPR, HIPAA, etc.).
+- Changes made to ensure compliance: {{ changes_description }}.
+- Compliance checked for: {{ component_or_service }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- The system is now compliant with the necessary regulations.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

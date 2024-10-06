@@ -1,0 +1,17 @@
+DATA MIGRATION: {{ commit_message }}
+
+Details:
+- Data migration conducted from: {{ source_system }} to {{ target_system }}.
+- Migration type: {{ migration_type }} (Full, Incremental, etc.).
+- Data volume: {{ data_volume }} records.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Expected downtime: {{ downtime_duration }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

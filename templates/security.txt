@@ -1,0 +1,18 @@
+SECURITY: {{ commit_message }}
+
+Security Details:
+- Vulnerability fixed: {{ vulnerability_id }}.
+- Vulnerability description: {{ vulnerability_description }}.
+- Solution: {{ solution_description }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Risk level: {{ risk_level }}.
+- Post-fix security assessment: {{ security_assessment }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

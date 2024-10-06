@@ -1,0 +1,18 @@
+SCHEMA UPDATE: {{ commit_message }}
+
+Details:
+- Database schema updated for: {{ table_or_database }}.
+- Changes made: {{ changes_description }}.
+- Migration type: {{ migration_type }} (Add column, modify type, etc.).
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Potential downtime: {{ downtime_duration }}.
+- No data loss expected.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

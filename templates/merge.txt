@@ -1,0 +1,16 @@
+MERGE: {{ commit_message }}
+
+Merge Details:
+- Merged branch: {{ source_branch }} into {{ target_branch }}.
+- Conflicts resolved: {{ conflicts_resolved }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Description of changes due to merge: {{ merge_impact }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

@@ -1,0 +1,18 @@
+LOG ROTATION UPDATE: {{ commit_message }}
+
+Details:
+- Log rotation policy updated for: {{ system_or_service }}.
+- New retention period: {{ retention_period }}.
+- New rotation frequency: {{ rotation_frequency }}.
+- Compression method: {{ compression_method }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Logs will be rotated and compressed based on the new policy.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

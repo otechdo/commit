@@ -1,0 +1,14 @@
+OPTIMIZE: {{ commit_message }}
+
+Optimization Details:
+- Code optimized in: {{ affected_module }}.
+- Reason for optimization: {{ reason }}.
+- Performance improvements: {{ improvements }}.
+
+Files optimized:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

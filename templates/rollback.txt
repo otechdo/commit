@@ -1,0 +1,14 @@
+ROLLBACK: {{ commit_message }}
+
+Rollback Details:
+- Feature/version rolled back: {{ feature_or_version }}.
+- Reason for rollback: {{ reason_for_rollback }}.
+- Impact: {{ rollback_impact }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

@@ -1,0 +1,15 @@
+HOTFIX: {{ commit_message }}
+
+Bug Details:
+- Issue resolved: {{ bug_id }}.
+- Cause: {{ bug_cause }}.
+- Urgency: {{ urgency }}.
+- Solution: {{ solution_description }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

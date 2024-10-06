@@ -1,0 +1,16 @@
+REVERT: {{ commit_message }}
+
+Reverted Commit:
+- Commit hash: {{ commit_hash }}.
+- Reason for revert: {{ reason_for_revert }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Description of impact: {{ impact_description }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

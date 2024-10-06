@@ -1,0 +1,16 @@
+REMOVE: {{ commit_message }}
+
+Details:
+- Feature removed: {{ feature_name }}.
+- Reason for removal: {{ reason_for_removal }}.
+
+Impact:
+- Impact on the system: {{ impact_description }}.
+
+Files removed:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

@@ -1,0 +1,14 @@
+DEPENDENCY REMOVAL: {{ commit_message }}
+
+Details:
+- Dependency removed: {{ dependency_name }}.
+- Reason for removal: {{ reason_for_removal }}.
+- Impact on the system: {{ impact_description }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

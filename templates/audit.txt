@@ -1,0 +1,18 @@
+AUDIT: {{ commit_message }}
+
+Details:
+- Audit conducted on: {{ component_or_service }}.
+- Audit type: {{ audit_type }} (Security, Performance, etc.).
+- Issues found: {{ issues_found }}.
+- Corrective actions taken: {{ corrective_actions }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Improved compliance and security posture.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

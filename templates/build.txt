@@ -1,0 +1,14 @@
+BUILD: {{ commit_message }}
+
+Dependency update:
+- Updated dependencies: {{ dependencies_updated }}.
+- Reason for update: {{ reason_for_update }}.
+- Version change: {{ version_change }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

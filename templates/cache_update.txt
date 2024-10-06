@@ -1,0 +1,17 @@
+CACHE UPDATE: {{ commit_message }}
+
+Details:
+- Cache strategy updated for: {{ component_or_service }}.
+- Changes to cache keys: {{ cache_keys_changes }}.
+- Expiration policy: {{ expiration_policy }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Improved cache performance and response times.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

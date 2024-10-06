@@ -1,0 +1,17 @@
+EXPERIMENT: {{ commit_message }}
+
+Details:
+- Experiment conducted in: {{ affected_module }}.
+- Purpose: {{ experiment_purpose }}.
+- Expected outcome: {{ expected_outcome }}.
+
+Files modified:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Note:
+- This commit is experimental and may not be merged into the main branch.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

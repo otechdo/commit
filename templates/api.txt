@@ -1,0 +1,20 @@
+API CHANGE: {{ commit_message }}
+
+Details:
+- API endpoint affected: {{ endpoint }}.
+- Change type: {{ change_type }} (Addition, Modification, Removal).
+- Breaking changes: {{ breaking_changes }}.
+- New parameters: {{ new_parameters }}.
+- Deprecated endpoints: {{ deprecated_endpoints }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Impact on API consumers: {{ consumer_impact }}.
+- Documentation updated: {{ documentation_update }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

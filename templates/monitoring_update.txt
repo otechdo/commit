@@ -1,0 +1,17 @@
+MONITORING UPDATE: {{ commit_message }}
+
+Details:
+- Monitoring updated for: {{ system_or_service }}.
+- New metrics added: {{ new_metrics }}.
+- Alerts modified or added: {{ alerts }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Improved observability and issue detection.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

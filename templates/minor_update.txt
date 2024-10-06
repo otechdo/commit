@@ -1,0 +1,14 @@
+MINOR UPDATE: {{ commit_message }}
+
+Details:
+- Minor change applied to: {{ component_name }}.
+- Type of update: {{ update_type }}.
+- Reason for minor update: {{ reason }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

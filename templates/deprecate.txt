@@ -1,0 +1,14 @@
+DEPRECATE: {{ commit_message }}
+
+Details:
+- Feature deprecated: {{ feature_name }}.
+- Reason for deprecation: {{ reason_for_deprecation }}.
+- Replacement (if any): {{ replacement }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

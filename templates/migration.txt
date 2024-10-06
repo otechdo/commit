@@ -1,0 +1,19 @@
+MIGRATION: {{ commit_message }}
+
+Migration Details:
+- Migration type: {{ migration_type }}.
+- Database affected: {{ database_name }}.
+- Purpose: {{ purpose_of_migration }}.
+
+Changes made:
+{% for change in changes %}
+  - {{ change }}
+{% endfor %}
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

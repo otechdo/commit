@@ -1,0 +1,17 @@
+DEPENDENCY UPDATE: {{ commit_message }}
+
+Details:
+- Updated dependencies: {{ dependencies }}.
+- Previous versions: {{ previous_versions }}.
+- New versions: {{ new_versions }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Improved security/performance/stability with the new versions.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

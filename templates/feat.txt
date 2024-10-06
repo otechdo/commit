@@ -1,0 +1,13 @@
+FEAT: {{ commit_message }}
+
+Details:
+- This commit introduces a new feature: {{ feature_name }}.
+- Purpose: {{ purpose }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

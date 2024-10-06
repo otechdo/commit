@@ -1,0 +1,13 @@
+CHORE: {{ commit_message }}
+
+Details:
+- Task performed: {{ task_description }}.
+- Reason for task: {{ reason }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

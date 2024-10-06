@@ -1,0 +1,17 @@
+TESTING ENVIRONMENT UPDATE: {{ commit_message }}
+
+Details:
+- Testing environment updated for: {{ component_or_feature }}.
+- Changes applied: {{ applied_changes }}.
+- New testing tools integrated: {{ testing_tools }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Impact on test coverage: {{ test_coverage_impact }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

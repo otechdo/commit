@@ -1,0 +1,13 @@
+PERF: {{ commit_message }}
+
+Details:
+- Improved performance in: {{ affected_module }}.
+- Performance gain: {{ performance_gain }}.
+
+Files modified:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

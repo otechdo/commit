@@ -1,0 +1,20 @@
+SQUASH: {{ commit_message }}
+
+Details:
+- Squashed commits: {{ squashed_commits }}.
+- Reason for squash: {{ reason_for_squash }}.
+- Original commit messages:
+{% for commit in original_commit_messages %}
+  - {{ commit }}
+{% endfor %}
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- The history has been squashed to keep a cleaner history.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

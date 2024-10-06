@@ -1,0 +1,13 @@
+TEST: {{ commit_message }}
+
+Details:
+- Added/updated tests for: {{ module_or_feature }}.
+- Reason for adding/updating tests: {{ reason }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

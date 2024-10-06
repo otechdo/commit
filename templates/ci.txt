@@ -1,0 +1,14 @@
+CI: {{ commit_message }}
+
+Details:
+- CI pipeline changed in: {{ pipeline_section }}.
+- Reason for change: {{ reason }}.
+- Tools/Configurations updated: {{ tools_or_configurations }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

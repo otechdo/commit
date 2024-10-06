@@ -1,0 +1,14 @@
+CONFIG: {{ commit_message }}
+
+Details:
+- Configuration changed: {{ config_change_description }}.
+- Reason for change: {{ reason }}.
+- Impact of change: {{ impact }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

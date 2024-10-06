@@ -1,0 +1,19 @@
+SERVICE UPDATE: {{ commit_message }}
+
+Details:
+- Service affected: {{ service_name }}.
+- Change type: {{ change_type }} (Addition, Modification, Removal).
+- Reason for change: {{ change_reason }}.
+- Impact on other services: {{ service_impact }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Expected downtime: {{ expected_downtime }}.
+- Service dependencies affected: {{ dependencies }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

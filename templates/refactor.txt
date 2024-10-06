@@ -1,0 +1,10 @@
+REFACTOR: {{ commit_message }}
+
+Refactor Details:
+
+  * Reason for refactor: {{ reason_for_refactor }}.
+  * Code structure improved in: {{ affected_module }}.
+
+Author: {{ author }}
+
+Parent Commit: {{ parent_commit }}

@@ -1,0 +1,17 @@
+SECURITY PATCH: {{ commit_message }}
+
+Details:
+- Vulnerability addressed: {{ vulnerability_id }}.
+- Patch applied: {{ patch_description }}.
+- Severity: {{ severity }}.
+
+Files patched:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Impact:
+- Risk mitigated: {{ risk_level }}.
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

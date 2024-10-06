@@ -1,0 +1,14 @@
+DEPLOYMENT: {{ commit_message }}
+
+Details:
+- Deployment tool or configuration updated: {{ deployment_tool }}.
+- Reason for change: {{ change_reason }}.
+- Impact: {{ deployment_impact }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}

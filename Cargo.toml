@@ -1,16 +1,54 @@
 [package]
 name = "commiter"
-version = "4.1.0"
+version = "5.0.0"
 edition = "2021"
 description = "A rust program to ensure the quality of commit"
-keywords = ["commit","git","quality","cargo","zuu"]
+keywords = ["commit", "git", "quality", "cargo", "zuu"]
 repository = "https://github.com/otechdo/commiter"
 categories = ["development-tools"]
 readme = "README.md"
 license-file = "LICENSE"
 homepage = "https://github.com/otechdo/commiter/wiki"
-authors = [ "Willy Micieli"]
+authors = ["Willy Micieli"]
+
 [dependencies]
-cargo_metadata = "0.18.1"
-chrono = "0.4.38"
-inquire = "0.7.5"
+actix-web = { version = "4.9.0", optional = true }
+adw = { version = "0.7", package = "libadwaita", optional = true }
+ask_gemini = { version = "0.1.4", optional = true }
+clap = { version = "4.5.19", optional = true }
+dotenvy = { version = "0.15.7", optional = true }
+git2 = { version = "0.19.0", optional = true }
+glib = { version = "0.20.4", optional = true }
+gtk = { version = "0.9.2", package = "gtk4", features = ["gnome_47"], optional = true }
+inquire = { version = "0.7.5", optional = true }
+ratatui = { version = "0.28.1", features = ["all-widgets", "macros", "document-features", "palette"], optional = true }
+ratatui-textarea = { version = "0.4.1", features = ["search", "ratatui"], optional = true }
+tokio = { version = "1.40.0", features = ["full"], optional = true }
+semver = { version = "1.0.23", optional = true }
+tracing = { version = "0.1.40", optional = true }
+tracing-subscriber = { version = "0.3.18", optional = true }
+prometheus = { version = "0.13.4", optional = true }
+opentelemetry = { version = "0.26.0", optional = true }
+tera = { version = "1.20.0", optional = true }
+reqwest = { version = "0.12.8", optional = true }
+tar = { version = "0.4.42", optional = true }
+flate2 = { version = "1.0.34", optional = true }
+regex = "1.11.0"
+glob = "0.3.1"
+
+[features]
+default = ["dotenvy"]
+git = ["git2", "git2/default", "git2/https", "git2/ssh_key_from_memory"]
+mercurial = []
+fossil = []
+pijul = []
+archive = ["tar", "flate2/default"]
+templates = ["tera/default", "tera", "tera/date-locale", "tera/preserve_order"]
+ai = ["ask_gemini", "tokio", "tokio/rt-multi-thread", "tokio/net"]
+gui = ["adw", "gtk", "glib/default"]
+cli = ["clap", "semver", "archive", "templates", "req","ask"]
+ask = ["inquire", "inquire/editor", "inquire/console", "inquire/date", "inquire/default", "semver"]
+tui = ["ratatui", "ratatui-textarea"]
+api = ["actix-web", "actix-web/default", "actix-web/openssl", "tracing", "tracing-subscriber", "tracing-subscriber/json", "tracing-subscriber/env-filter", "opentelemetry/default", "opentelemetry", "prometheus"]
+web = ["actix-web", "actix-web/default", "templates", "req"]
+req = ["reqwest", "reqwest/blocking", "reqwest/stream", "reqwest/socks", "tokio/full", "tokio"]

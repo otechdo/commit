@@ -1,0 +1,13 @@
+STYLE: {{ commit_message }}
+
+Details:
+- Updated code style in: {{ affected_module }}.
+- Style guidelines followed: {{ style_guidelines }}.
+
+Files affected:
+{% for file in files %}
+  - {{ file }}
+{% endfor %}
+
+Author: {{ author }}
+Signed-off-by: {{ signed_off_by }}
