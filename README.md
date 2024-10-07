@@ -165,6 +165,8 @@
 
 # Installation
 
+> For the moment only feature cli is implemented
+
 ```bash
 cargo install commiter --features git --features cli
 ```

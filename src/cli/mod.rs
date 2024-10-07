@@ -14,6 +14,8 @@ use std::process::Command as V;
 use tar::{Archive, Builder};
 use tera::Tera;
 use std::io::Result;
+use chrono::Local;
+
 fn parse_templates(dir: &str) -> Result<HashMap<String, Vec<String>>> {
     let mut templates: HashMap<String, Vec<String>> = HashMap::new();
     let pattern = format!("{dir}/**/*.txt");
@@ -37,6 +39,8 @@ fn parse_templates(dir: &str) -> Result<HashMap<String, Vec<String>>> {
     }
     Ok(templates)
 }
+
+#[cfg(feature = "mercurial")]
 
 fn get_hg_parent_commit() -> Option<String> {
     let output = V::new("hg")
@@ -167,7 +171,7 @@ async fn commit(matches: &ArgMatches) {
 
         if let Some(variables) = templates.get(template.as_str()) {
             for variable in variables {
-                if variable.ne("parent_commit") {
+                if variable.ne("parent_commit") && variable.ne("commit_date") {
                     loop {
                         let user_input = Text::new(&format!("Enter value for {variable}:"))
                             .prompt()
@@ -179,6 +183,9 @@ async fn commit(matches: &ArgMatches) {
                         println!("{variable} must be defined");
                     }
                 } else {
+                    let current_date = Local::now().format("%Y-%m-%d").to_string();
+                    context.insert("commit_date", &current_date);
+
                     #[cfg(feature = "mercurial")]
                     {
                         if let Some(parent_commit) = get_hg_parent_commit() {
@@ -234,6 +241,7 @@ async fn commit(matches: &ArgMatches) {
         eprintln!("No template specified.");
     }
 }
+#[cfg(feature = "fossil")]
 fn get_fossil_parent_commit() -> Option<String> {
     let output = V::new("fossil")
         .arg("info")
@@ -252,6 +260,7 @@ fn get_fossil_parent_commit() -> Option<String> {
 }
 
 
+#[cfg(feature = "pijul")]
 fn get_pijul_parent_commit() -> Option<String> {
     let output = V::new("pijul")
         .arg("log")

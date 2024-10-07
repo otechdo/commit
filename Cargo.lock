@@ -609,6 +609,7 @@ version = "5.0.0"
 dependencies = [
  "actix-web",
  "ask_gemini",
+ "chrono",
  "clap",
  "dotenvy",
  "flate2",
