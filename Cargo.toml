@@ -38,7 +38,7 @@ glob = "0.3.1"
 chrono = "0.4.38"
 
 [features]
-default = ["dotenvy"]
+default = ["dotenvy", "git", "cli"]
 git = ["git2", "git2/default", "git2/https", "git2/ssh_key_from_memory"]
 mercurial = []
 fossil = []
@@ -47,7 +47,7 @@ archive = ["tar", "flate2/default"]
 templates = ["tera/default", "tera", "tera/date-locale", "tera/preserve_order"]
 ai = ["ask_gemini", "tokio", "tokio/rt-multi-thread", "tokio/net"]
 gui = ["adw", "gtk", "glib/default"]
-cli = ["clap", "semver", "archive", "templates", "req","ask"]
+cli = ["clap", "semver", "archive", "templates", "req", "ask"]
 ask = ["inquire", "inquire/editor", "inquire/console", "inquire/date", "inquire/default", "semver"]
 tui = ["ratatui", "ratatui-textarea"]
 api = ["actix-web", "actix-web/default", "actix-web/openssl", "tracing", "tracing-subscriber", "tracing-subscriber/json", "tracing-subscriber/env-filter", "opentelemetry/default", "opentelemetry", "prometheus"]
