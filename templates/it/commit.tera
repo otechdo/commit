@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+    .description {
+      text-indent: 2em;
+    }
+    .title {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+    .summary {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin-bottom: 1em;
+    }
+    body {
+      background-color: black;
+      color: white;
+      font-family: sans-serif; 
+      line-height: 1.5; 
+    }
+    ul {
+      list-style-type: disc; 
+      margin-left: 2em; 
+    }
+    a {
+      color: #007bff; 
+      text-decoration: none; 
+    }
+  </style>
+    </head>
+    <body>
+        <section>
+            <header>
+                <h1 class="title">{{ title | capitalize }}</h1>
+                <p class="summary">{{ summary | truncate(50) }}</p>
+            </header>
+            <article>
+                <h2 class="title">Motivazioni delle modifiche</h2>
+                <p class="description">{{ reasons | word_wrap(width=72) }}</p>
+            </article>
+        </section>
+        <section>
+            <h2 class="title">Squadra</h2>
+            <article>
+                <section>
+                    <header>
+                        <h3 class="title">{{ team_name }}</h3>
+                        <p><a href="mailto:{{ team_lead_email }}">Contatta il
+                                team leader</a></p>
+                    </header>
+                    <article>
+                        <header>
+                            <h3 class="title">Autore del commit</h3>
+                        </header>
+                        <ul>
+                            <li>{{ committer_name }}</li>
+                            <li>Email: {{ committer_email }}</li>
+                            <li>Ruolo: {{ committer_role }}</li>
+                            <li>Profilo: <a href="{{ committer_link }}">{{
+                                    committer_link }}</a></li>
+                        </ul>
+                    </article>
+                </section>
+            </article>
+        </section>
+        <section>
+            <article>
+                <header>
+                    <h2 class="title">Contesto aziendale</h2>
+                </header>
+                {% if business_context %}
+                <section>
+                    <header>
+                        <h3 class="title">Obiettivo strategico</h3>
+                    </header>
+                    <article>
+                        <p style="text-indent: 2em;">{{ business_context.goal |
+                            word_wrap(width=72) }}</p>
+                    </article>
+                </section>
+                <section>
+                    <header>
+                        <h3 class="title">Giustificazione aziendale</h3>
+                    </header>
+                    <article>
+                        <p style="text-indent: 2em;">{{
+                            business_context.justification | word_wrap(width=72)
+                            }}</p>
+                    </article>
+                </section>
+                {% if business_context.stakeholders %}
+                <section>
+                    <header>
+                        <h3 class="title">Stakeholder chiave</h3>
+                    </header>
+                    {% for stakeholder in business_context.stakeholders %}
+                    <article>
+                        <h4>{{ stakeholder.title }}</h4>
+                        <p>{{ stakeholder | word_wrap(width=72) }}</p>
+                    </article>
+                    {% endfor %}
+                </section>
+                {% endif %}
+                {% if business_context.requirements %}
+                <section>
+                    <header>
+                        <h3 class="title">Requisiti aziendali</h3>
+                    </header>
+                    <article>
+                        <ul>
+                            {% for requirement in business_context.requirements
+                            %}
+                            <li style="text-indent: 2em;">{{ requirement |
+                                word_wrap(width=72) }}</li>
+                            {% endfor %}
+                        </ul>
+                    </article>
+                </section>
+                {% endif %}
+                {% else %}
+                <article>
+                    <p>Nessuna informazione sul contesto aziendale
+                        disponibile.</p>
+                </article>
+                {% endif %}
+            </article>
+        </section>
+
+        {% if issues | length > 0 %}
+        <section>
+            <h2 class="title">Problemi correlati</h2>
+            {% for issue in issues %}
+            <article>
+                <h3 class="title">{{ issue.title }}</h3>
+                <ul>
+                    <li><strong>Correzioni:</strong> #{{ issue.id }} - {{
+                        issue.description }}</li>
+                    <li><strong>Creato il:</strong> {{ issue.created_at |
+                        date(format="%Y-%m-%d") }}</li>
+                    <li><strong>Autore:</strong> {{ issue.author | capitalize
+                        }}</li>
+                    <li><strong>Priorità:</strong> {{ issue.priority |
+                        capitalize }}</li>
+                    <li><strong>Stato:</strong> {{ issue.status | capitalize
+                        }}</li>
+                    <li><strong>Tag:</strong>
+                        {% if issue.tags | length > 5 %}
+                        {{ issue.tags[:5] | join(', ') }}, ...
+                        {% else %}
+                        {{ issue.tags | join(', ') }}
+                        {% endif %}
+                    </li>
+                    <li><strong>Assegnato a:</strong> {{ issue.assignee |
+                        capitalize }}</li>
+                    {% if issue.discussion_link %}
+                    <li><strong>Discussione:</strong> <a
+                            href="{{ issue.discussion_link }}">Discussione</a></li>
+                    {% endif %}
+                    {% if issue.pr_link %}
+                    <li><strong>Pull Request:</strong> <a
+                            href="{{ issue.pr_link }}">Pull Request</a></li>
+                    {% endif %}
+                </ul>
+            </article>
+            {% endfor %}
+        </section>
+        {% else %}
+        <section>
+            <header>
+                <h2 class="title">Problemi correlati</h2>
+            </header>
+            <p>_Nessun problema da visualizzare._</p>
+        </section>
+        {% endif %}
+
+        {% if tests %}
+        <section>
+            <header>
+                <h2 class="title">Test eseguiti</h2>
+            </header>
+            {% for test in tests %}
+            <article>
+                <header>
+                    <h3 class="title">{{ test.title }}</h3>
+                </header>
+                <section>
+                    <header>
+                        <h4 class="title">{{ test.name }}</h4>
+                    </header>
+                    <p>{{ test.description }}</p>
+                    <ul>
+                        <li><strong>Tipo:</strong> {{ test.type }}</li>
+                        <li><strong>Piattaforma:</strong> {{ test.platform
+                            }}</li>
+                        <li><strong>Risultato:</strong> {{ test.result }}</li>
+                        <li><strong>Superato/Fallito:</strong> {{ test.pass_fail
+                            }}</li>
+                        <li><strong>Eseguito da:</strong> {{ test.executed_by
+                            }}</li>
+                        <li><strong>Data:</strong> {{ test.date |
+                            date(format="%Y-%m-%d") }}</li>
+                    </ul>
+                </section>
+            </article>
+            {% endfor %}
+            <p><strong>Copertura del codice:</strong> {{ coverage }}</p>
+        </section>
+        {% else %}
+        <article>
+            <header>
+                <h2 class="title">Test eseguiti</h2>
+            </header>
+            <p>_Nessun test eseguito._</p>
+        </article>
+        {% endif %}
+
+        {% if vulnerabilities > 0 %}
+        <section>
+            <header>
+                <h2 class="title">Rapporto sulle vulnerabilità di sicurezza</h2>
+            </header>
+            <section>
+                {% for (vulnerability, component) in vulnerabilities.items() %}
+                <article>
+                    <header>
+                        <h3 class="title">{{ vulnerability.title | truncate(50)
+                            }}</h3>
+                    </header>
+                    <p>{{ vulnerability.description | word_wrap(width=72) }}</p>
+                    <ul>
+                        <li><strong>Livello:</strong> {{ vulnerability.level
+                            }}</li>
+                        <li><strong>Componente:</strong> {{ component.name |
+                            truncate(50) | capitalize }}</li>
+                        {% if vulnerability.hacks_possible %}
+                        <li><strong>Possibili hack:</strong> {{
+                            vulnerability.hacks_possible | join(", ") }}</li>
+                        {% else %}
+                        <li><strong>Possibili hack:</strong> _Nessuna
+                            informazione disponibile._</li>
+                        {% endif %}
+                        {% if vulnerability.cve %}
+                        <li><a href="{{ vulnerability.url }}">{{
+                                vulnerability.cve }}</a></li>
+                        {% endif %}
+                    </ul>
+                    <p><strong>Rimedio:</strong></p>
+                    <p style="text-indent: 2em;">{{ vulnerability.remediation |
+                        word_wrap(width=72) }}</p>
+
+                    <h4>Patch di vulnerabilità</h4>
+                    <h5>Codice vulnerabile attuale</h5>
+                    <pre><code class="{{ language }}">{{ vulnerability.code | highlight }}</code></pre>
+
+                    <h5>Codice corretto</h5>
+                    <pre><code class="{{ language }}">{{ vulnerability.fixes_code | highlight }}</code></pre>
+
+                    <ul>
+                        <li><strong>Inviato da:</strong> {{
+                            vulnerability.submiter or "Sconosciuto" }}</li>
+                        <li><strong>Verificato da:</strong> {{
+                            vulnerability.admin or "Non verificato" }}</li>
+                        <li><strong>Aggiunto a:</strong> {{
+                            vulnerability.todoist or "Non tracciato" }}</li>
+                        <li><strong>Data di scoperta:</strong> {{
+                            vulnerability.find | date(format="%Y-%m-%d") }}</li>
+                        <li><strong>Data di correzione:</strong>
+                            {% if vulnerability.fixes_date %}
+                            {{ vulnerability.fixes_date |
+                            date(format="%Y-%m-%d") }}
+                            {% else %}
+                            Non corretto
+                            {% endif %}
+                        </li>
+                    </ul>
+                </article>
+                {% endfor %}
+            </section>
+        </section>
+        {% else %}
+        <section>
+            <header>
+                <h2 class="title">Rapporto sulle vulnerabilità di sicurezza</h2>
+            </header>
+            <p>Nessuna vulnerabilità segnalata.</p>
+        </section>
+        {% endif %}
+
+        {% if risks %}
+        <section>
+            <header>
+                <h2 class="title">Rischi potenziali</h2>
+            </header>
+            <article>
+                <section>
+                    {% for risk in risks %}
+                    <article>
+                        <h3>{{ risk.title }}</h3>
+                        <p>{{ risk.description | word_wrap(width=72) }}</p>
+                        <ul>
+                            <li><strong>Gravità:</strong> {{ risk.severity
+                                }}</li>
+                            <li><strong>Misure di mitigazione:</strong> {{
+                                risk.mitigation | word_wrap(width=72) }}</li>
+                        </ul>
+                    </article>
+                    {% endfor %}
+                </section>
+            </article>
+        </section>
+        {% else %}
+        <section>
+            <header>
+                <h2 class="title">Rischi potenziali</h2>
+            </header>
+            <p>Nessun rischio potenziale identificato.</p>
+        </section>
+        {% endif %}
+
+        <section>
+            <header>
+                <h2 class="title">Risposta agli incidenti</h2>
+            </header>
+            <article>
+                {% if incidents %}
+                <ul>
+                    {% for incident in incidents %}
+                    <li>
+                        <p><strong>Descrizione dell'incidente:</strong> {{
+                            incident.description | word_wrap(width=72) }}</p>
+                        <p><strong>Azioni intraprese:</strong> {{
+                            incident.actions_taken | word_wrap(width=72) }}</p>
+                        <p><strong>Data:</strong> {{ incident.date |
+                            date(format="%Y-%m-%d") }}</p>
+                        <p><strong>Persona responsabile:</strong> {{
+                            incident.responsible_person }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>Nessun incidente segnalato.</p>
+                {% endif %}
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2 class="title">Impatto delle modifiche</h2>
+            </header>
+            <article>
+                {% if impacts %}
+                <ul>
+                    {% for impact in impacts %}
+                    <li>
+                        <p><strong>Descrizione:</strong> {{ impact.description |
+                            word_wrap(width=72) }}</p>
+                        <p><strong>Componenti interessati:</strong> {{
+                            impact.affected_components | join(", ") }}</p>
+                        <p><strong>Tipo di impatto:</strong> {{ impact.type
+                            }}</p>
+                        <p><strong>Gravità:</strong> {{ impact.severity }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>Nessun impatto identificato.</p>
+                {% endif %}
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2 class="title">Decisioni importanti</h2>
+            </header>
+            <article>
+                {% if decisions %}
+                <ul>
+                    {% for decision in decisions %}
+                    <li>
+                        <p><strong>Descrizione:</strong> {{ decision.description
+                            | word_wrap(width=72) }}</p>
+                        <p><strong>Motivo:</strong> {{ decision.reason |
+                            word_wrap(width=72) }}</p>
+                        <p><strong>Data:</strong> {{ decision.date |
+                            date(format="%Y-%m-%d") }}</p>
+                        <p><strong>Responsabile della decisione:</strong> {{
+                            decision.decision_maker }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>Nessuna decisione importante da segnalare.</p>
+                {% endif %}
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2 class="title">Compromessi</h2>
+            </header>
+            <article>
+                {% if trade_offs %}
+                <ul>
+                    {% for trade_off in trade_offs %}
+                    <li>
+                        <p><strong>Descrizione:</strong> {{
+                            trade_off.description | word_wrap(width=72) }}</p>
+                        <p><strong>Vantaggi:</strong> {{ trade_off.advantages |
+                            word_wrap(width=72) }}</p>
+                        <p><strong>Svantaggi:</strong> {{
+                            trade_off.disadvantages | word_wrap(width=72) }}</p>
+                        <p><strong>Decisione:</strong> {{ trade_off.decision |
+                            word_wrap(width=72) }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>Nessun compromesso da segnalare.</p>
+                {% endif %}
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2 class="title">Sforzo</h2>
+            </header>
+            <article>
+                {% if effort %}
+                <ul>
+                    {% for task in effort %}
+                    <li>
+                        <p><strong>Attività:</strong> {{ task.name |
+                            word_wrap(width=72) }}</p>
+                        <p><strong>Tempo impiegato:</strong> {{ task.time_spent
+                            }}</p>
+                        <p><strong>Stima:</strong> {{ task.estimation }}</p>
+                        <p><strong>Risorse:</strong> {{ task.resources |
+                            join(", ") }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>Nessuna informazione sullo sforzo disponibile.</p>
+                {% endif %}
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2 class="title">File modificati</h2>
+            </header>
+            <article>
+                <ul>
+                    {% for file in files %}
+                    <li>
+                        <p><strong>Nome del file:</strong> {{ file.name }}</p>
+                        <p><strong>Tipo di modifica:</strong> {{
+                            file.change_type }}</p>
+                        <p><strong>Descrizione:</strong> {{ file.description |
+                            word_wrap(width=72) }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </article>
+        </section>
+
+        {% if dependencies %}
+        <section>
+            <header>
+                <h2 class="title">Dipendenze</h2>
+            </header>
+            {% for dependency in dependencies %}
+            <article>
+                {% if dependency.added > 0 %}
+                <section>
+                    <h3 class="title">Dipendenze aggiunte</h3>
+                    <ul>
+                        {% for added in dependency.added %}
+                        <li>
+                            <p>Dipendenza {{ added.name }} aggiunta nella
+                                versione {{ added.version }} a:</p>
+                            <p style="text-indent: 2em;">{{ added.reason |
+                                word_wrap(width=72) if added.reason else
+                                "(Nessuna ragione specificata)" }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <pre><code>{{ added_dependencies }}</code></pre>
+                </section>{% endif %}
+
+                {% if dependency.removed > 0 %}
+                <section>
+                    <h3 class="title">Dipendenze rimosse</h3>
+                    <ul>
+                        {% for removed in dependency.removed %}
+                        <li>
+                            {% if removed.replaced %}
+                            <p>Dipendenza {{ removed.name }} sostituita con {{
+                                removed.replacement }}:</p>
+                            <p style="text-indent: 2em;">{{
+                                removed.replaced_reason | word_wrap(width=72) if
+                                removed.replaced_reason else
+                                "(Nessuna ragione specificata)" }}</p>
+                            {% else %}
+                            <p>Dipendenza {{ removed.name }} rimossa da:</p>
+                            <p style="text-indent: 2em;">{{ removed.reason |
+                                word_wrap(width=72) if removed.reason else
+                                "(Nessuna ragione specificata)" }}</p>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <pre><code>{{ removed_dependencies }}</code></pre>
+                </section>
+                {% endif %}
+
+                {% if dependency.added == 0 and dependency.removed == 0 %}
+                <p>Nessuna modifica di dipendenza per {{ dependency.name }}.</p>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </section>
+        {% else %}
+        <p>Nessuna dipendenza aggiunta o rimossa.</p>
+        {% endif %}
+
+        <section>
+            <header>
+                <h2 class="title">Modifiche al codice</h2>
+            </header>
+            <article>
+                <h3>Prima</h3>
+                <pre><code class="{{ language }}">{{ before_code | highlight }}</code></pre>
+
+                <h3>Dopo</h3>
+                <pre><code class="{{ language }}">{{ after_code | highlight }}</code></pre>
+
+                <h3>Test</h3>
+                <pre><code class="{{ language }}">{{ test_code | highlight }}</code></pre>
+                <p><strong>Stato del test:</strong> {{ test_status }}</p>
+                <p><strong>File di test aggiunti:</strong> {{ test_files |
+                    join(', ') }}</p>
+
+                <p><strong>Descrizione delle modifiche:</strong></p>
+                <p style="text-indent: 2em;">{{ modifications.description |
+                    word_wrap(width=72) }}</p>
+
+                <p><strong>Miglioramenti:</strong></p>
+                <p style="text-indent: 2em;">{{ modifications.improvements |
+                    word_wrap(width=72) }}</p>
+
+                <p><strong>Revisione:</strong></p>
+                <p style="text-indent: 2em;">{{ modifications.review |
+                    word_wrap(width=72) }}</p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2 class="title">Commenti</h2>
+            </header>
+            <article>
+                <p>{{ comments | word_wrap(width=72) }}</p>
+
+                <h3>Note aggiuntive</h3>
+                {% if additional_notes %}
+                <p>{{ additional_notes | word_wrap(width=72) }}</p>
+                {% else %}
+                <p>Nessuna nota aggiuntiva.</p>
+                {% endif %}
+            </article>
+        </section>
+
+        <hr>
+
+        <section>
+            <header>
+                <h2 class="title">Informazioni</h2>
+            </header>
+            <article>
+                <h3>Autore</h3>
+                <ul>
+                    <li><strong>Nome completo:</strong> {{ author | capitalize
+                        }}</li>
+                    {% if show_author_email %}
+                    <li><strong>Email:</strong> {{ author_email | replace("@",
+                        " [at] ") | replace(".", " [dot] ") }}</li>
+                    {% endif %}
+                    <li><strong>Nome utente:</strong> {{ author_username }}</li>
+                    <li><strong>Ruolo:</strong> {{ author_role }}</li>
+                    <li><strong>Contributi:</strong> {{ author_contributions
+                        }}</li>
+                    <li><strong>Profilo:</strong> <a href="{{ author_link }}">{{
+                            author_link }}</a></li>
+                </ul>
+
+                <p><strong>Data:</strong> {{ commit_date |
+                    date(format="%Y-%m-%d") }}</p>
+
+                <h3>Cc</h3>
+                {% if cc_list %}
+                <ul>
+                    {% for recipient in cc_list %}
+                    <li>{{ recipient }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>Nessun destinatario in Cc.</p>
+                {% endif %}
+            </article>
+        </section>
+    </body>
+</html>
